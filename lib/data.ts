@@ -14,7 +14,7 @@ export const site = {
     linkedin: "https://linkedin.com/company/haodepower",
     facebook: "https://facebook.com/haodepower",
     youtube: "https://youtube.com/@haodepower",
-    whatsapp: "https://wa.me/8613000000000",
+    whatsapp: "https://wa.me/8619084957004",
   },
 };
 
