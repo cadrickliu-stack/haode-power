@@ -6,10 +6,10 @@ export const site = {
   tagline: "Reliable Power Solutions for Mining & Construction",
   description:
     "Haode Power manufactures heavy-duty diesel generator sets and mobile light towers for mining, construction, oil & gas, and rental fleets, exporting to over 60 countries.",
-  phone: "+86 130 0000 0000",
-  whatsapp: "+86 130 0000 0000",
+  phone: "+86 190 8495 7004",
+  whatsapp: "+86 190 8495 7004",
   email: "sales@haodepower.com",
-  address: "No. 88 Industrial Park Road, Weifang City, Shandong, China",
+  address: "No. 600, Tongjiang Middle Road, Xinbei District, Changzhou City, Jiangsu Province, China",
   socials: {
     linkedin: "https://linkedin.com/company/haodepower",
     facebook: "https://facebook.com/haodepower",
