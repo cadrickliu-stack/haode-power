@@ -168,7 +168,7 @@ export default function AboutPage() {
               30,000m² Production Facility
             </h2>
             <p className="mt-5 text-steel-600">
-              Located in Weifang City, Shandong Province — one of China&apos;s
+              Located in Changzhou City, Jiangsu Province — one of China&apos;s
               major power equipment manufacturing hubs — our facility houses
               fabrication, assembly, testing, and warehousing under one roof,
               with direct rail and port access for export shipments.
