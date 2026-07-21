@@ -9,7 +9,8 @@ export const site = {
   phone: "+86 190 8495 7004",
   whatsapp: "+86 190 8495 7004",
   email: "sales@haodepower.com",
-  address: "No. 600, Tongjiang Middle Road, Xinbei District, Changzhou City, Jiangsu Province, China",
+  address:
+    "No. 600, Tongjiang Middle Road, Xinbei District, Changzhou City, Jiangsu Province, China",
   socials: {
     linkedin: "https://linkedin.com/company/haodepower",
     facebook: "https://facebook.com/haodepower",
@@ -39,6 +40,7 @@ export type Generator = {
   phase: string;
   slug: string;
   image: string;
+  alt: string;
   useCase: string;
 };
 
@@ -52,8 +54,8 @@ export const generators: Generator[] = [
     runtimeHrs: "8 hrs",
     phase: "Single/Three",
     slug: "20kva",
-    image:
-      "https://images.unsplash.com/photo-1622912427800-5cfdb5b0c1a2?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/diesel-generators/20kva-diesel-generator.jpg",
+    alt: "20kVA diesel generator for workshops and small construction sites",
     useCase: "Small sites, workshops, backup power",
   },
   {
@@ -65,8 +67,8 @@ export const generators: Generator[] = [
     runtimeHrs: "10 hrs",
     phase: "Three Phase",
     slug: "50kva",
-    image:
-      "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/diesel-generators/50kva-diesel-generator.jpg",
+    alt: "50kVA diesel generator for construction sites and rental fleets",
     useCase: "Construction sites, small rental fleets",
   },
   {
@@ -78,8 +80,8 @@ export const generators: Generator[] = [
     runtimeHrs: "12 hrs",
     phase: "Three Phase",
     slug: "100kva",
-    image:
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/diesel-generators/100kva-diesel-generator.jpg",
+    alt: "100kVA diesel generator for commercial buildings and mid-size construction",
     useCase: "Mid-size construction, commercial buildings",
   },
   {
@@ -91,8 +93,8 @@ export const generators: Generator[] = [
     runtimeHrs: "15 hrs",
     phase: "Three Phase",
     slug: "200kva",
-    image:
-      "https://images.unsplash.com/photo-1518709414768-a88981a4515d?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/diesel-generators/200kva-diesel-generator.jpg",
+    alt: "200kVA diesel generator for mining support and industrial facilities",
     useCase: "Mining support, hospitals, factories",
   },
   {
@@ -104,8 +106,8 @@ export const generators: Generator[] = [
     runtimeHrs: "18 hrs",
     phase: "Three Phase",
     slug: "500kva",
-    image:
-      "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/diesel-generators/500kva-diesel-generator.jpg",
+    alt: "500kVA diesel generator for mining application and oil and gas fields",
     useCase: "Mining sites, oil & gas fields, data centers",
   },
   {
@@ -117,11 +119,21 @@ export const generators: Generator[] = [
     runtimeHrs: "24 hrs",
     phase: "Three Phase",
     slug: "1000kva",
-    image:
-      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/diesel-generators/1000kva-diesel-generator.jpg",
+    alt: "1000kVA diesel generator for large mining operations and power plants",
     useCase: "Large mining operations, power plants, utilities",
   },
 ];
+
+export const dieselGeneratorHero = {
+  image: "/images/products/diesel-generators/hero-diesel-generator-mining.jpg",
+  alt: "Diesel generator set for mining application",
+};
+
+export const dieselGeneratorCategory = {
+  image: "/images/products/diesel-generators/category-diesel-generators.jpg",
+  alt: "Diesel generator sets for mining and construction power",
+};
 
 export type LightTower = {
   name: string;
@@ -131,6 +143,7 @@ export type LightTower = {
   lighting: string;
   runtime: string;
   image: string;
+  alt: string;
   description: string;
   features: string[];
 };
@@ -143,8 +156,8 @@ export const lightTowers: LightTower[] = [
     mastHeight: "9m Pneumatic Mast",
     lighting: "4 x 300W LED",
     runtime: "Continuous (Solar Charged)",
-    image:
-      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/mobile-light-towers/solar-light-tower.jpg",
+    alt: "Solar powered mobile light tower for remote construction sites",
     description:
       "Zero-fuel, silent illumination for remote sites and noise-sensitive zones. Fully autonomous solar charging with battery backup for multi-day cloudy runtime.",
     features: [
@@ -161,8 +174,8 @@ export const lightTowers: LightTower[] = [
     mastHeight: "9m Pneumatic Mast",
     lighting: "4 x 1000W Metal Halide / LED",
     runtime: "Up to 100 hrs on single tank",
-    image:
-      "https://images.unsplash.com/photo-1590959651373-a3db0f38c961?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/mobile-light-towers/diesel-light-tower.jpg",
+    alt: "LED lighting tower for mining operations and night-shift construction",
     description:
       "Heavy-duty towed light tower engineered for mining and infrastructure night shifts, with extended-runtime fuel tanks and a galvanized-steel frame.",
     features: [
@@ -179,8 +192,8 @@ export const lightTowers: LightTower[] = [
     mastHeight: "9m Pneumatic Mast",
     lighting: "4 x 300W LED",
     runtime: "300+ hrs between refuels",
-    image:
-      "https://images.unsplash.com/photo-1541976590-713941681591?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/products/mobile-light-towers/hybrid-light-tower.jpg",
+    alt: "Hybrid solar and diesel mobile light tower for long-term rental fleets",
     description:
       "The lowest total operating cost of the range: solar and battery handle everyday loads while the diesel engine engages automatically only when needed.",
     features: [
@@ -191,6 +204,16 @@ export const lightTowers: LightTower[] = [
     ],
   },
 ];
+
+export const lightTowerHero = {
+  image: "/images/products/mobile-light-towers/hero-light-tower-construction.jpg",
+  alt: "Mobile light tower for construction site",
+};
+
+export const lightTowerCategory = {
+  image: "/images/products/mobile-light-towers/category-mobile-light-towers.jpg",
+  alt: "Mobile light towers illuminating a night construction site",
+};
 
 export const industries = [
   {
