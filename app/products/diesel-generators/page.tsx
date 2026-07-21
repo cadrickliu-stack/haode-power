@@ -40,7 +40,6 @@ export default function DieselGeneratorsPage() {
         eyebrow="Prime & Standby Power"
         title="Diesel Generator Sets"
         description="Six standard capacities from 20kVA to 1000kVA, built around Cummins and Perkins engines, with silent canopy and open-frame configurations available on every model."
-        
       />
 
       <section className="border-b border-navy-900/10 bg-white py-16">
