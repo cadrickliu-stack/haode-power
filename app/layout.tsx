@@ -91,9 +91,9 @@ export default function RootLayout({
     description: site.description,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "No. 88 Industrial Park Road",
-      addressLocality: "Weifang",
-      addressRegion: "Shandong",
+      streetAddress: "No. 600, Tongjiang Middle Road",
+      addressLocality: "Changzhou",
+      addressRegion: "Jiangsu",
       addressCountry: "CN",
     },
     contactPoint: [
