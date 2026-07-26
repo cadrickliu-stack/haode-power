@@ -47,7 +47,7 @@ export default async function GeneratorBrandDetailPage({ params }: PageProps) {
     <main className="min-h-screen bg-slate-50">
       <PageHero
         title={brand.name}
-        subtitle={brand.powerRange}
+        description={brand.powerRange}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
