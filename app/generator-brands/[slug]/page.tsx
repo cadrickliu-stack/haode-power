@@ -46,6 +46,7 @@ export default async function GeneratorBrandDetailPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-slate-50">
       <PageHero
+        eyebrow="Generator Engine Brand"
         title={brand.name}
         description={brand.powerRange}
       />
