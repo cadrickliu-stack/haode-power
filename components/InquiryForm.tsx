@@ -6,6 +6,13 @@ import { useSearchParams } from "next/navigation";
 const productOptions = [
   "Diesel Generator Series",
   "Cummins Diesel Generator Series",
+  "Perkins Diesel Generator Series",
+  "Volvo Diesel Generator Series",
+  "MTU Diesel Generator Series",
+  "Yuchai Diesel Generator Series",
+  "Weichai Diesel Generator Series",
+  "SDEC (Shangchai) Diesel Generator Series",
+  "Doosan Diesel Generator Series",
   "BMA4000",
   "BMN4000",
   "BMNVH1600",

@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Diesel Generator Series by Engine Brand",
   description:
-    "Explore Haode Power diesel generator series by engine brand. The Cummins series is available with a verified 50Hz engine and output reference.",
+    "Explore diesel generator sets by engine brand, with verified 50Hz reference tables for Cummins, Perkins, Volvo, MTU, Yuchai, Weichai, SDEC, and Doosan series.",
   alternates: { canonical: "/products/diesel-generators" },
 };
 
@@ -48,7 +48,7 @@ export default function DieselGeneratorsPage() {
       <section className="border-b border-navy-900/10 bg-white py-16">
         <div className="container-wide grid grid-cols-1 gap-8 sm:grid-cols-3">
           {[
-            { label: "Published Series", value: "Cummins" },
+            { label: "Published Series", value: "8 Brands" },
             { label: "Frequency Reference", value: "50Hz" },
             { label: "Order Configuration", value: "Project Specific" },
           ].map((fact) => (
@@ -70,10 +70,10 @@ export default function DieselGeneratorsPage() {
             <SectionHeading
               eyebrow="Published Brand Series"
               title="Select an Engine Brand"
-              description="Cummins is the first completed sample page. Additional brands will be published only after their model tables and configuration details are confirmed."
+              description="Open a brand series to review its real product photo and confirmed 50Hz engine and output references. Final order configuration is confirmed during quotation."
             />
           </Reveal>
-          <div className="mt-12 max-w-3xl">
+          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
             {dieselGeneratorBrands.map((brand, index) => (
               <Reveal key={brand.slug} delay={index * 100}>
                 <DieselBrandCard brand={brand} />
@@ -88,8 +88,8 @@ export default function DieselGeneratorsPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Planned Series"
-              title="More Engine Brands"
-              description="These brand series are planned, but no detail pages are published yet. Each page will be added after its technical information is checked."
+              title="Technical Data Pending"
+              description="Mitsubishi remains visible in the brand range, but its detail page will be published only after reliable model parameters are provided."
             />
             <div className="mt-8 flex flex-wrap gap-3">
               {plannedDieselGeneratorBrands.map((brand) => (

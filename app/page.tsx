@@ -113,15 +113,15 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Diesel Generator Sets"
                 title="Engine Brand Series"
-                description="Browse generator sets by engine brand. Cummins is the first published series, with additional brands added after their technical data is confirmed."
+                description="Start with four key engine brand series, then view the complete published range and its confirmed 50Hz references."
               />
               <Link href="/products/diesel-generators" className="btn-dark">
-                View All Generators
+                View All Engine Brands
               </Link>
             </div>
           </Reveal>
-          <div className="mt-12 max-w-3xl">
-            {dieselGeneratorBrands.map((brand, i) => (
+          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {dieselGeneratorBrands.slice(0, 4).map((brand, i) => (
               <Reveal key={brand.slug} delay={i * 100}>
                 <DieselBrandCard brand={brand} />
               </Reveal>

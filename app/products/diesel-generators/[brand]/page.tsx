@@ -168,7 +168,7 @@ export default async function DieselGeneratorBrandPage({ params }: BrandPageProp
             <SectionHeading
               eyebrow="Order Configuration"
               title="Configuration Confirmed Per Project"
-              description="The Cummins sample page includes the required configuration sections, but unverified equipment is not listed as standard or optional."
+              description="Each brand page includes the required configuration sections, but unverified equipment is not listed as standard or optional."
             />
           </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -204,7 +204,7 @@ export default async function DieselGeneratorBrandPage({ params }: BrandPageProp
       <section className="bg-navy-900 py-16 text-center text-white">
         <div className="container-wide">
           <h2 className="font-display text-3xl font-700 uppercase tracking-tight sm:text-4xl">
-            Confirm Your Cummins Generator Requirement
+            Confirm Your {brand.name} Generator Requirement
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/70">
             Send the required output, frequency, voltage, configuration,
