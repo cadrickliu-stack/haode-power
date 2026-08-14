@@ -65,7 +65,7 @@ export default function Footer() {
             <li><Link href="/products/diesel-generators" className="focus-ring hover:text-orange-400">Diesel Generator Brand Series</Link></li>
             <li><Link href="/products/diesel-generators/cummins" className="focus-ring hover:text-orange-400">Cummins Generator Series</Link></li>
             <li><Link href="/products/mobile-light-towers" className="focus-ring hover:text-orange-400">Mobile Light Tower Models</Link></li>
-            <li><Link href="/products/mobile-light-towers" className="focus-ring hover:text-orange-400">4TNVE600 Solar Light Tower</Link></li>
+              <li><Link href="/products/mobile-light-towers/4tnve600" className="focus-ring hover:text-orange-400">4TNVE600 Solar Light Tower</Link></li>
             <li><Link href="/products" className="focus-ring hover:text-orange-400">View All Products</Link></li>
           </ul>
         </div>

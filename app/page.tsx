@@ -7,8 +7,9 @@ import Reveal from "@/components/Reveal";
 import DieselBrandCard from "@/components/DieselBrandCard";
 import LightTowerCard from "@/components/LightTowerCard";
 import InquiryForm from "@/components/InquiryForm";
-import { advantages, dieselGeneratorCategory, industries, lightTowerCategory, lightTowers, site } from "@/lib/data";
+import { advantages, dieselGeneratorCategory, industries, lightTowerCategory, site } from "@/lib/data";
 import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
+import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
 export const metadata: Metadata = {
   title: "Diesel Generators & Mobile Light Towers Manufacturer",
@@ -173,7 +174,7 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Mobile Light Towers"
                 title="Mobile Lighting Models"
-                description="Explore five towable lighting models, including the 4TNVE600 solar light tower. Verified specifications are available from our team."
+                description="Explore five towable lighting models with confirmed model specifications, including the 4TNVE600 solar light tower."
               />
               <Link href="/products/mobile-light-towers" className="btn-dark">
                 View All Light Towers
@@ -181,7 +182,7 @@ export default function HomePage() {
             </div>
           </Reveal>
           <div className="mt-12 space-y-8">
-            {lightTowers.map((tower, i) => (
+            {mobileLightTowers.map((tower, i) => (
               <Reveal key={tower.slug} delay={i * 100}>
                 <LightTowerCard tower={tower} />
               </Reveal>

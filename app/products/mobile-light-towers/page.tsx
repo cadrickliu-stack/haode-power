@@ -4,7 +4,8 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import LightTowerCard from "@/components/LightTowerCard";
-import { lightTowers, site, lightTowerHero } from "@/lib/data";
+import { site, lightTowerHero } from "@/lib/data";
+import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
 export const metadata: Metadata = {
   title: "Mobile Light Towers | Five Product Models",
@@ -17,14 +18,14 @@ export default function LightTowersPage() {
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: lightTowers.map((t, i) => ({
+    itemListElement: mobileLightTowers.map((t, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {
         "@type": "Product",
         name: `${site.name} ${t.name}`,
-        description: t.description,
-        brand: { "@type": "Brand", name: site.name },
+        description: t.shortDescription,
+        url: `${site.url}/products/mobile-light-towers/${t.slug}`,
       },
     })),
   };
@@ -70,17 +71,9 @@ export default function LightTowersPage() {
             />
           </Reveal>
           <div className="mt-12 space-y-8">
-            {lightTowers.map((tower, i) => (
+            {mobileLightTowers.map((tower, i) => (
               <Reveal key={tower.slug} delay={i * 100}>
                 <LightTowerCard tower={tower} />
-                <ul className="mt-4 grid grid-cols-1 gap-2 border border-t-0 border-navy-900/10 bg-white p-6 sm:grid-cols-2">
-                  {tower.features.map((f) => (
-                    <li key={f} className="flex gap-2 text-sm text-steel-600">
-                      <span className="mt-0.5 text-orange-500">✓</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
               </Reveal>
             ))}
           </div>
@@ -90,32 +83,70 @@ export default function LightTowersPage() {
       <section className="bg-white py-24">
         <div className="container-wide">
           <Reveal>
-            <SectionHeading eyebrow="Product Overview" title="Compare Models" />
+            <SectionHeading
+              eyebrow="Product Overview"
+              title="Compare Models"
+              description="Compare confirmed power source, mast height, lighting, runtime, and weight across the five current models."
+            />
           </Reveal>
           <Reveal delay={100}>
-            <div className="mt-10 overflow-x-auto border border-navy-900/10">
-              <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+            <div className="mt-10 hidden overflow-hidden border border-navy-900/10 lg:block">
+              <table className="w-full table-fixed border-collapse text-left text-sm">
                 <thead>
                   <tr className="bg-navy-900 text-white">
-                    <th className="px-5 py-4 font-display text-sm font-700 uppercase tracking-wide">Model</th>
-                    <th className="px-5 py-4 font-display text-sm font-700 uppercase tracking-wide">Power Source</th>
-                    <th className="px-5 py-4 font-display text-sm font-700 uppercase tracking-wide">Mast Height</th>
-                    <th className="px-5 py-4 font-display text-sm font-700 uppercase tracking-wide">Lighting</th>
-                    <th className="px-5 py-4 font-display text-sm font-700 uppercase tracking-wide">Runtime</th>
+                    <th className="px-4 py-4 font-display text-sm font-700 uppercase tracking-wide">Model</th>
+                    <th className="px-4 py-4 font-display text-sm font-700 uppercase tracking-wide">Power Source</th>
+                    <th className="px-4 py-4 font-display text-sm font-700 uppercase tracking-wide">Mast Height</th>
+                    <th className="w-1/4 px-4 py-4 font-display text-sm font-700 uppercase tracking-wide">Lighting</th>
+                    <th className="px-4 py-4 font-display text-sm font-700 uppercase tracking-wide">Runtime</th>
+                    <th className="px-4 py-4 font-display text-sm font-700 uppercase tracking-wide">Weight</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {lightTowers.map((t) => (
+                  {mobileLightTowers.map((t) => (
                     <tr key={t.slug} className="spec-row border-t border-navy-900/10">
-                      <td className="px-5 py-4 font-mono font-600 text-navy-900">{t.name}</td>
-                      <td className="px-5 py-4 text-steel-600">{t.power}</td>
-                      <td className="px-5 py-4 font-mono text-steel-600">{t.mastHeight}</td>
-                      <td className="px-5 py-4 text-steel-600">{t.lighting}</td>
-                      <td className="px-5 py-4 font-mono text-orange-600">{t.runtime}</td>
+                      <td className="px-4 py-4 font-mono font-600 text-navy-900">
+                        <Link href={`/products/mobile-light-towers/${t.slug}`} className="focus-ring hover:text-orange-500">
+                          {t.model}
+                        </Link>
+                      </td>
+                      <td className="px-4 py-4 text-steel-600">{t.powerSource}</td>
+                      <td className="px-4 py-4 font-mono text-steel-600">{t.mastHeight}</td>
+                      <td className="break-words px-4 py-4 text-steel-600">{t.lighting}</td>
+                      <td className="px-4 py-4 font-mono text-orange-600">{t.runtime}</td>
+                      <td className="px-4 py-4 font-mono text-steel-600">{t.weight}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
+              {mobileLightTowers.map((tower) => (
+                <article key={tower.slug} className="min-w-0 border border-navy-900/10 bg-paper p-5">
+                  <h3 className="font-display text-xl font-700 uppercase text-navy-900">
+                    <Link href={`/products/mobile-light-towers/${tower.slug}`} className="focus-ring hover:text-orange-500">
+                      {tower.model}
+                    </Link>
+                  </h3>
+                  <dl className="mt-4 grid min-w-0 grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                    {[
+                      { label: "Power Source", value: tower.powerSource },
+                      { label: "Mast Height", value: tower.mastHeight },
+                      { label: "Lighting", value: tower.lighting },
+                      { label: "Runtime", value: tower.runtime },
+                      { label: "Weight", value: tower.weight },
+                    ].map((item) => (
+                      <div key={item.label} className="min-w-0">
+                        <dt className="text-[10px] font-bold uppercase tracking-wide text-steel-500">{item.label}</dt>
+                        <dd className="mt-1 break-words font-mono text-navy-900">{item.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <Link href={`/products/mobile-light-towers/${tower.slug}`} className="focus-ring mt-5 inline-flex min-h-11 items-center text-sm font-bold uppercase tracking-wide text-orange-500">
+                    View Details <span aria-hidden className="ml-2">→</span>
+                  </Link>
+                </article>
+              ))}
             </div>
           </Reveal>
         </div>

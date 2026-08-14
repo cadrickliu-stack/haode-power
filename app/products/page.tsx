@@ -5,8 +5,9 @@ import Reveal from "@/components/Reveal";
 import DieselBrandCard from "@/components/DieselBrandCard";
 import LightTowerCard from "@/components/LightTowerCard";
 import PageHero from "@/components/PageHero";
-import { lightTowers, dieselGeneratorCategory } from "@/lib/data";
+import { dieselGeneratorCategory } from "@/lib/data";
 import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
+import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
 export const metadata: Metadata = {
   title: "Products | Diesel Generators & Mobile Light Towers",
@@ -65,7 +66,7 @@ export default function ProductsPage() {
             </div>
           </Reveal>
           <div className="mt-12 space-y-8">
-            {lightTowers.map((tower, i) => (
+            {mobileLightTowers.map((tower, i) => (
               <Reveal key={tower.slug} delay={i * 100}>
                 <LightTowerCard tower={tower} />
               </Reveal>
