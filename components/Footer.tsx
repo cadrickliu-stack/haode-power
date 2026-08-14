@@ -21,24 +21,16 @@ export default function Footer() {
             engineered for mining, construction, oil &amp; gas, and rental
             fleets — exporting worldwide since day one.
           </p>
-          <div className="mt-6 flex gap-3">
-            {[
-              { label: "LinkedIn", href: site.socials.linkedin },
-              { label: "Facebook", href: site.socials.facebook },
-              { label: "YouTube", href: site.socials.youtube },
-              { label: "WhatsApp", href: site.socials.whatsapp },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="focus-ring flex h-9 w-9 items-center justify-center border border-white/15 text-xs font-bold uppercase text-white/70 transition-colors hover:border-orange-400 hover:text-orange-400"
-              >
-                {s.label.slice(0, 2)}
-              </a>
-            ))}
+          <div className="mt-6">
+            <a
+              href={site.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contact Haode Power on WhatsApp"
+              className="focus-ring inline-flex h-9 items-center justify-center border border-white/15 px-3 text-xs font-bold uppercase text-white/70 transition-colors hover:border-orange-400 hover:text-orange-400"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
 
@@ -87,7 +79,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href={site.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="focus-ring hover:text-orange-400">
+              <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="focus-ring hover:text-orange-400">
                 WhatsApp: {site.whatsapp}
               </a>
             </li>

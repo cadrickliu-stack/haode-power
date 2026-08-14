@@ -409,9 +409,9 @@ export const dieselGeneratorBrands: DieselGeneratorBrand[] = [
     slug: "doosan",
     title: "Doosan Diesel Generator Series",
     shortDescription:
-      "Diesel generator sets powered by Doosan engines, with confirmed 50Hz references and one inconsistent source row intentionally excluded.",
+      "Diesel generator sets powered by Doosan engines, with confirmed 50Hz engine and output references for industrial power projects.",
     description:
-      "This series uses Doosan engines for generator set projects across the supplied 50Hz output combinations. Only internally consistent engine and output rows are published; final electrical equipment, enclosure, and order configuration are confirmed before quotation.",
+      "This series uses Doosan engines across the published 50Hz output references. Engine model, output, cylinders, and bore-and-stroke data support initial selection, while final electrical equipment, enclosure, and order configuration are confirmed during quotation.",
     image:
       "/images/real/products/diesel-generators/brands/doosan-diesel-generator-series.webp",
     imageAlt: "Doosan-powered open diesel generator set in a manufacturing facility",

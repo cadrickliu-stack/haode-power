@@ -53,7 +53,7 @@ export default function Hero() {
           {[
             { value: "10+", label: "Years Experience" },
             { value: "60+", label: "Export Countries" },
-            { value: "20–1000", label: "kVA Range" },
+            { value: "8", label: "Published Brands" },
             { value: "24/7", label: "Technical Support" },
           ].map((stat) => (
             <div key={stat.label}>

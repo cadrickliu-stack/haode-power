@@ -40,7 +40,7 @@ export default function LightTowersPage() {
       <PageHero
         eyebrow="Job Site Illumination"
         title="Mobile Light Towers"
-        description="Five mobile lighting models for professional site illumination, including the 4TNVE600 solar light tower. Contact us for verified model-specific specifications."
+        description="Five mobile lighting models for professional site illumination, including the 4TNVE600 solar light tower, with confirmed specifications published for each model."
         image={lightTowerHero.image}
         imageAlt={lightTowerHero.alt}
       />

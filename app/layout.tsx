@@ -108,7 +108,6 @@ export default function RootLayout({
         availableLanguage: ["English", "Chinese"],
       },
     ],
-    sameAs: Object.values(site.socials),
   };
 
   return (

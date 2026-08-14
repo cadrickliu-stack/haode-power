@@ -37,10 +37,24 @@ export default function ContactPage() {
 
             <div className="mt-8 space-y-6 border-t border-navy-900/10 pt-8">
               <div>
-                <div className="text-xs font-bold uppercase tracking-wide text-orange-500">Phone / WhatsApp</div>
-                <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="focus-ring mt-1 block font-display text-xl font-700 text-navy-900 hover:text-orange-500">
-                  {site.phone}
-                </a>
+                <div className="text-xs font-bold uppercase tracking-wide text-orange-500">Direct Contact</div>
+                <p className="mt-1 font-display text-xl font-700 text-navy-900">{site.phone}</p>
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                  <a
+                    href={`tel:${site.phone.replace(/\s/g, "")}`}
+                    className="btn-dark min-h-11 w-full px-4"
+                  >
+                    Phone
+                  </a>
+                  <a
+                    href={site.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary min-h-11 w-full px-4"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
               </div>
               <div>
                 <div className="text-xs font-bold uppercase tracking-wide text-orange-500">Email</div>
