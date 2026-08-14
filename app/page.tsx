@@ -4,10 +4,11 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
-import GeneratorCard from "@/components/GeneratorCard";
+import DieselBrandCard from "@/components/DieselBrandCard";
 import LightTowerCard from "@/components/LightTowerCard";
 import InquiryForm from "@/components/InquiryForm";
-import { advantages, dieselGeneratorCategory, generators, industries, lightTowerCategory, lightTowers, site } from "@/lib/data";
+import { advantages, dieselGeneratorCategory, industries, lightTowerCategory, lightTowers, site } from "@/lib/data";
+import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 
 export const metadata: Metadata = {
   title: "Diesel Generators & Mobile Light Towers Manufacturer",
@@ -16,8 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const featuredGenerators = [generators[1], generators[3], generators[4]];
-
   return (
     <>
       <Hero />
@@ -64,7 +63,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-8">
-                  <div className="eyebrow before:bg-orange-500">20kVA – 1000kVA</div>
+                  <div className="eyebrow before:bg-orange-500">Multi-Brand Series</div>
                   <h3 className="mt-2 font-display text-3xl font-700 uppercase text-white">
                     Diesel Generators
                   </h3>
@@ -106,25 +105,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Generators strip */}
+      {/* Featured diesel generator brand series */}
       <section className="bg-white py-24">
         <div className="container-wide">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading
                 eyebrow="Diesel Generator Sets"
-                title="Popular Models"
-                description="A sample of our range — full lineup spans 20kVA to 1000kVA."
+                title="Engine Brand Series"
+                description="Browse generator sets by engine brand. Cummins is the first published series, with additional brands added after their technical data is confirmed."
               />
               <Link href="/products/diesel-generators" className="btn-dark">
                 View All Generators
               </Link>
             </div>
           </Reveal>
-          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredGenerators.map((gen, i) => (
-              <Reveal key={gen.model} delay={i * 100}>
-                <GeneratorCard gen={gen} />
+          <div className="mt-12 max-w-3xl">
+            {dieselGeneratorBrands.map((brand, i) => (
+              <Reveal key={brand.slug} delay={i * 100}>
+                <DieselBrandCard brand={brand} />
               </Reveal>
             ))}
           </div>

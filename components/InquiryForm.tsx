@@ -4,12 +4,8 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const productOptions = [
-  "Diesel Generator 20kVA",
-  "Diesel Generator 50kVA",
-  "Diesel Generator 100kVA",
-  "Diesel Generator 200kVA",
-  "Diesel Generator 500kVA",
-  "Diesel Generator 1000kVA",
+  "Diesel Generator Series",
+  "Cummins Diesel Generator Series",
   "BMA4000",
   "BMN4000",
   "BMNVH1600",

@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
-import GeneratorCard from "@/components/GeneratorCard";
+import DieselBrandCard from "@/components/DieselBrandCard";
 import LightTowerCard from "@/components/LightTowerCard";
 import PageHero from "@/components/PageHero";
-import { generators, lightTowers, dieselGeneratorHero } from "@/lib/data";
+import { lightTowers, dieselGeneratorCategory } from "@/lib/data";
+import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 
 export const metadata: Metadata = {
   title: "Products | Diesel Generators & Mobile Light Towers",
   description:
-    "Browse Haode Power's diesel generator sets from 20kVA to 1000kVA and five current mobile light tower models.",
+    "Browse Haode Power diesel generator series by engine brand and five current mobile light tower models.",
   alternates: { canonical: "/products" },
 };
 
@@ -21,7 +22,7 @@ export default function ProductsPage() {
         eyebrow="Full Product Range"
         title="Products"
         description="Diesel generator sets and mobile light towers engineered for mining, construction, oil & gas, and rental operations."
-        image={dieselGeneratorHero.image}
+        image={dieselGeneratorCategory.image}
         imageAlt="Diesel generator and mobile light tower product range"
       />
 
@@ -30,19 +31,19 @@ export default function ProductsPage() {
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading
-                eyebrow="20kVA – 1000kVA"
+                eyebrow="Engine Brand Series"
                 title="Diesel Generators"
-                description="Six standard capacities covering everything from workshop backup to mining-grade prime power."
+                description="Select generator sets by engine brand. Cummins is the first published series; additional brand pages will follow after technical confirmation."
               />
               <Link href="/products/diesel-generators" className="btn-dark">
                 Full Specifications
               </Link>
             </div>
           </Reveal>
-          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {generators.map((gen, i) => (
-              <Reveal key={gen.model} delay={(i % 3) * 100}>
-                <GeneratorCard gen={gen} />
+          <div className="mt-12 max-w-3xl">
+            {dieselGeneratorBrands.map((brand, i) => (
+              <Reveal key={brand.slug} delay={i * 100}>
+                <DieselBrandCard brand={brand} />
               </Reveal>
             ))}
           </div>

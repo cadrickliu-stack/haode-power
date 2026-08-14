@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/data";
+import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -9,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products/mobile-light-towers",
     "/about",
     "/contact",
+    ...dieselGeneratorBrands.map(
+      (brand) => `/products/diesel-generators/${brand.slug}`,
+    ),
   ];
 
   return routes.map((route) => ({
