@@ -33,7 +33,7 @@ export default function ProductsPage() {
               <SectionHeading
                 eyebrow="Engine Brand Series"
                 title="Diesel Generators"
-                description="Select generator sets by engine brand. Cummins is the first published series; additional brand pages will follow after technical confirmation."
+                description="Explore eight published diesel generator series by engine brand, with confirmed 50Hz reference data and product configurations."
               />
               <Link href="/products/diesel-generators" className="btn-dark">
                 Full Specifications
