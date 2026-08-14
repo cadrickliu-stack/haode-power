@@ -10,7 +10,7 @@ import { generators, lightTowers, dieselGeneratorHero } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Products | Diesel Generators & Mobile Light Towers",
   description:
-    "Browse Haode Power's full product range: diesel generator sets from 20kVA to 1000kVA, and solar, diesel, and hybrid mobile light towers.",
+    "Browse Haode Power's diesel generator sets from 20kVA to 1000kVA and five current mobile light tower models.",
   alternates: { canonical: "/products" },
 };
 
@@ -54,9 +54,9 @@ export default function ProductsPage() {
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading
-                eyebrow="Solar / Diesel / Hybrid"
+                eyebrow="Five Product Models"
                 title="Mobile Light Towers"
-                description="Choose fuel-free solar, heavy-duty diesel, or fuel-saving hybrid to match your site's runtime and noise requirements."
+                description="Explore BMA4000, BMN4000, BMNVH1600, 4HVP1600M, and the 4TNVE600 solar light tower."
               />
               <Link href="/products/mobile-light-towers" className="btn-dark">
                 Full Specifications

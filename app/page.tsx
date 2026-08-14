@@ -89,7 +89,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-8">
-                  <div className="eyebrow before:bg-orange-500">Solar / Diesel / Hybrid</div>
+                  <div className="eyebrow before:bg-orange-500">Five Mobile Lighting Models</div>
                   <h3 className="mt-2 font-display text-3xl font-700 uppercase text-white">
                     Mobile Light Towers
                   </h3>
@@ -173,8 +173,8 @@ export default function HomePage() {
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading
                 eyebrow="Mobile Light Towers"
-                title="Solar, Diesel & Hybrid"
-                description="Choose the power source that fits your site — or let hybrid technology decide automatically."
+                title="Mobile Lighting Models"
+                description="Explore five towable lighting models, including the 4TNVE600 solar light tower. Verified specifications are available from our team."
               />
               <Link href="/products/mobile-light-towers" className="btn-dark">
                 View All Light Towers
@@ -195,8 +195,8 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-navy-900 py-24 text-white">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?q=80&w=1800&auto=format&fit=crop"
-            alt="Generator factory production line"
+            src="/images/real/home/diesel-generator-production-line.webp"
+            alt="Diesel generator production line at a manufacturing facility"
             fill
             className="object-cover"
             sizes="100vw"
@@ -210,10 +210,10 @@ export default function HomePage() {
               <span className="text-orange-400"> Six Continents</span>
             </h2>
             <p className="mt-5 max-w-lg text-white/70">
-              Haode Power combines in-house engine assembly, canopy
-              fabrication, and full-load testing under one roof — giving
-              buyers a single accountable source for equipment that has to
-              start every time, in every climate.
+              Haode Power coordinates engine selection, generator assembly,
+              quality control, and delivery with experienced manufacturing
+              partners — giving buyers one accountable contact from technical
+              confirmation through shipment.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-6">
               {[
@@ -233,8 +233,8 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative col-span-2 h-56 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?q=80&w=1200&auto=format&fit=crop"
-                  alt="Generator assembly line"
+                  src="/images/real/home/diesel-generator-assembly.webp"
+                  alt="Diesel generator assembly at a manufacturing facility"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -242,8 +242,8 @@ export default function HomePage() {
               </div>
               <div className="relative h-40 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop"
-                  alt="Quality testing of generator sets"
+                  src="/images/real/home/generator-quality-control-testing.webp"
+                  alt="Generator quality control and testing room"
                   fill
                   className="object-cover"
                   sizes="25vw"
@@ -251,8 +251,8 @@ export default function HomePage() {
               </div>
               <div className="relative h-40 overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1518709414768-a88981a4515d?q=80&w=800&auto=format&fit=crop"
-                  alt="Generator container packing for export"
+                  src="/images/real/home/diesel-generators-ready-for-shipment.webp"
+                  alt="Diesel generator sets ready for shipment"
                   fill
                   className="object-cover"
                   sizes="25vw"

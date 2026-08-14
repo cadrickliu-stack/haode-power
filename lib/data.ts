@@ -131,8 +131,8 @@ export const dieselGeneratorHero = {
 };
 
 export const dieselGeneratorCategory = {
-  image: "/images/products/diesel-generators/category-diesel-generators.jpg",
-  alt: "Diesel generator sets for mining and construction power",
+  image: "/images/real/products/diesel-generators/diesel-generator-series-category.webp",
+  alt: "Diesel generator sets prepared for shipment",
 };
 
 export type LightTower = {
@@ -150,58 +150,69 @@ export type LightTower = {
 
 export const lightTowers: LightTower[] = [
   {
-    name: "Solar Light Tower",
-    slug: "solar-light-tower",
-    power: "Solar Panel + Battery Bank",
-    mastHeight: "9m Pneumatic Mast",
-    lighting: "4 x 300W LED",
-    runtime: "Continuous (Solar Charged)",
-    image: "/images/products/mobile-light-towers/solar-light-tower.jpg",
-    alt: "Solar powered mobile light tower for remote construction sites",
+    name: "BMA4000",
+    slug: "bma4000",
+    power: "Available on request",
+    mastHeight: "Available on request",
+    lighting: "Available on request",
+    runtime: "Available on request",
+    image: "/images/real/products/mobile-light-towers/bma4000-mobile-light-tower.webp",
+    alt: "BMA4000 mobile light tower product view",
     description:
-      "Zero-fuel, silent illumination for remote sites and noise-sensitive zones. Fully autonomous solar charging with battery backup for multi-day cloudy runtime.",
-    features: [
-      "100% fuel-free operation",
-      "Silent — ideal for urban & residential sites",
-      "Remote monitoring & GPS tracking",
-      "Automatic dusk-to-dawn operation",
-    ],
+      "BMA4000 mobile light tower for professional site lighting. Contact our team for the verified configuration and technical specification.",
+    features: ["Model-specific specification available on request"],
   },
   {
-    name: "Diesel Light Tower",
-    slug: "diesel-light-tower",
-    power: "Diesel Engine Generator",
-    mastHeight: "9m Pneumatic Mast",
-    lighting: "4 x 1000W Metal Halide / LED",
-    runtime: "Up to 100 hrs on single tank",
-    image: "/images/products/mobile-light-towers/diesel-light-tower.jpg",
-    alt: "LED lighting tower for mining operations and night-shift construction",
+    name: "BMN4000",
+    slug: "bmn4000",
+    power: "Available on request",
+    mastHeight: "Available on request",
+    lighting: "Available on request",
+    runtime: "Available on request",
+    image: "/images/real/products/mobile-light-towers/bmn4000-mobile-light-tower.webp",
+    alt: "BMN4000 mobile light tower operating in a production facility",
     description:
-      "Heavy-duty towed light tower engineered for mining and infrastructure night shifts, with extended-runtime fuel tanks and a galvanized-steel frame.",
-    features: [
-      "Extended-runtime fuel tank",
-      "360° tower rotation",
-      "Heavy-duty galvanized chassis",
-      "Towable highway-rated trailer",
-    ],
+      "BMN4000 mobile light tower shown with its lighting system in operation. Contact our team for the verified configuration and technical specification.",
+    features: ["Model-specific specification available on request"],
   },
   {
-    name: "Hybrid Light Tower",
-    slug: "hybrid-light-tower",
-    power: "Solar + Diesel + Battery",
-    mastHeight: "9m Pneumatic Mast",
-    lighting: "4 x 300W LED",
-    runtime: "300+ hrs between refuels",
-    image: "/images/products/mobile-light-towers/hybrid-light-tower.jpg",
-    alt: "Hybrid solar and diesel mobile light tower for long-term rental fleets",
+    name: "BMNVH1600",
+    slug: "bmnvh1600",
+    power: "Available on request",
+    mastHeight: "Available on request",
+    lighting: "Available on request",
+    runtime: "Available on request",
+    image: "/images/real/products/mobile-light-towers/bmnvh1600-mobile-light-tower.webp",
+    alt: "BMNVH1600 towable mobile light tower in raised and lowered positions",
     description:
-      "The lowest total operating cost of the range: solar and battery handle everyday loads while the diesel engine engages automatically only when needed.",
-    features: [
-      "Up to 90% fuel savings vs diesel-only",
-      "Automatic power-source switching",
-      "Telematics-ready fuel monitoring",
-      "Ideal for long-term rental fleets",
-    ],
+      "BMNVH1600 towable mobile light tower shown in transport and operating positions. Contact our team for the verified technical specification.",
+    features: ["Model-specific specification available on request"],
+  },
+  {
+    name: "4HVP1600M",
+    slug: "4hvp1600m",
+    power: "Available on request",
+    mastHeight: "Available on request",
+    lighting: "Available on request",
+    runtime: "Available on request",
+    image: "/images/real/products/mobile-light-towers/4hvp1600m-mobile-light-tower.webp",
+    alt: "4HVP1600M towable mobile light tower in raised and lowered positions",
+    description:
+      "4HVP1600M towable mobile light tower for site illumination. Contact our team for the verified configuration and technical specification.",
+    features: ["Model-specific specification available on request"],
+  },
+  {
+    name: "4TNVE600 Solar Light Tower",
+    slug: "4tnve600-solar-light-tower",
+    power: "Solar",
+    mastHeight: "Available on request",
+    lighting: "Available on request",
+    runtime: "Available on request",
+    image: "/images/real/products/mobile-light-towers/4tnve600-solar-light-tower.webp",
+    alt: "4TNVE600 solar mobile light tower with photovoltaic panels",
+    description:
+      "4TNVE600 solar mobile light tower with integrated photovoltaic panels. Contact our team for the verified battery, lighting, mast, and runtime specification.",
+    features: ["Solar-powered model", "Detailed specification available on request"],
   },
 ];
 
@@ -211,8 +222,8 @@ export const lightTowerHero = {
 };
 
 export const lightTowerCategory = {
-  image: "/images/products/mobile-light-towers/category-mobile-light-towers.jpg",
-  alt: "Mobile light towers illuminating a night construction site",
+  image: "/images/real/products/mobile-light-towers/bmnvh1600-mobile-light-tower.webp",
+  alt: "BMNVH1600 towable mobile light tower product views",
 };
 
 export const industries = [

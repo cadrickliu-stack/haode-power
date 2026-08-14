@@ -7,9 +7,9 @@ import LightTowerCard from "@/components/LightTowerCard";
 import { lightTowers, site, lightTowerHero } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Mobile Light Towers | Solar, Diesel & Hybrid",
+  title: "Mobile Light Towers | Five Product Models",
   description:
-    "Haode Power mobile light towers — solar, diesel, and hybrid models with 9m pneumatic masts for mining, construction, and emergency response lighting.",
+    "Explore Haode Power mobile light tower models BMA4000, BMN4000, BMNVH1600, 4HVP1600M, and the 4TNVE600 solar light tower.",
   alternates: { canonical: "/products/mobile-light-towers" },
 };
 
@@ -39,7 +39,7 @@ export default function LightTowersPage() {
       <PageHero
         eyebrow="Job Site Illumination"
         title="Mobile Light Towers"
-        description="Towable, mast-mounted lighting systems built for night-shift construction, mining, and emergency response — powered by solar, diesel, or hybrid systems."
+        description="Five mobile lighting models for professional site illumination, including the 4TNVE600 solar light tower. Contact us for verified model-specific specifications."
         image={lightTowerHero.image}
         imageAlt={lightTowerHero.alt}
       />
@@ -47,10 +47,10 @@ export default function LightTowersPage() {
       <section className="border-b border-navy-900/10 bg-white py-16">
         <div className="container-wide grid grid-cols-2 gap-8 sm:grid-cols-4">
           {[
-            { label: "Mast Height", value: "9 Meters" },
-            { label: "Coverage Area", value: "5,000 m²" },
-            { label: "Light Output", value: "Up to 4,000W" },
-            { label: "Configurations", value: "Solar / Diesel / Hybrid" },
+            { label: "Product Range", value: "5 Models" },
+            { label: "Solar Model", value: "4TNVE600" },
+            { label: "Specifications", value: "Model Specific" },
+            { label: "Configuration", value: "Sales Support" },
           ].map((f) => (
             <div key={f.label} className="border-l-2 border-orange-500 pl-4">
               <div className="font-mono text-xl font-600 text-navy-900 sm:text-2xl">{f.value}</div>
@@ -64,9 +64,9 @@ export default function LightTowersPage() {
         <div className="container-wide">
           <Reveal>
             <SectionHeading
-              eyebrow="Three Ways to Power Your Site"
-              title="Solar, Diesel & Hybrid Models"
-              description="Match your light tower to your site's fuel access, noise restrictions, and runtime requirements."
+              eyebrow="Current Product Range"
+              title="Five Mobile Light Tower Models"
+              description="Review the available models below. Technical specifications are confirmed per model and project requirement."
             />
           </Reveal>
           <div className="mt-12 space-y-8">
@@ -90,7 +90,7 @@ export default function LightTowersPage() {
       <section className="bg-white py-24">
         <div className="container-wide">
           <Reveal>
-            <SectionHeading eyebrow="Full Specification Sheet" title="Compare Models" />
+            <SectionHeading eyebrow="Product Overview" title="Compare Models" />
           </Reveal>
           <Reveal delay={100}>
             <div className="mt-10 overflow-x-auto border border-navy-900/10">

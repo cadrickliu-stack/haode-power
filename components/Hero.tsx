@@ -1,18 +1,26 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-navy-900">
       <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?q=80&w=2000&auto=format&fit=crop"
-          alt="Diesel generator set operating on a mining site at dusk"
-          fill
-          priority
-          className="object-cover opacity-30"
-          sizes="100vw"
-        />
+        {/* Pre-optimized art direction: each viewport downloads only its matching WebP. */}
+        <picture className="block h-full w-full">
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/real/home/cummins-diesel-generator-series-hero-mobile.webp"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/real/home/cummins-diesel-generator-series-hero-desktop.webp"
+            alt="Cummins diesel generator series in a production facility"
+            width={1920}
+            height={900}
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover opacity-30"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-900/95 to-navy-900/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent" />
       </div>
@@ -28,8 +36,8 @@ export default function Hero() {
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
             Professional diesel generators and mobile light towers built for
-            demanding environments — engineered in-house, tested at full load,
-            and exported worldwide.
+            demanding environments — coordinated with experienced manufacturing
+            partners and prepared for worldwide delivery.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link href="/contact" className="btn-primary">

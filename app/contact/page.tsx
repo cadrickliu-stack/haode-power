@@ -18,7 +18,8 @@ export default function ContactPage() {
         eyebrow="Contact Us"
         title="Request a Quotation"
         description="Tell us about your project and we'll respond with technical specifications and FOB/CIF pricing within 24 hours."
-        image="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?q=80&w=1800&auto=format&fit=crop"
+        image="/images/real/contact/diesel-generator-delivery-trucks.webp"
+        imageAlt="Diesel generator delivery trucks prepared for shipment"
       />
 
       <section className="bg-white py-24">
