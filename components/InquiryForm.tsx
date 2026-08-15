@@ -1,7 +1,9 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { site } from "@/lib/data";
+import { event } from "@/lib/gtag";
 
 const productOptions = [
   "Diesel Generator Series",
@@ -29,9 +31,12 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
   const [inquiryId, setInquiryId] = useState("");
   const searchParams = useSearchParams();
   const prefillProduct = searchParams.get("product") || "";
+  const submissionInProgress = useRef(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submissionInProgress.current) return;
+    submissionInProgress.current = true;
     setStatus("submitting");
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
@@ -55,9 +60,22 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
 
       setInquiryId(result.inquiryId);
       setStatus("success");
+      const product = String(data.product || "");
+      const lightTowerModels = ["BMA4000", "BMN4000", "BMNVH1600", "4HVP1600M", "4TNVE600"];
+      event("generate_lead", {
+        product,
+        product_category: lightTowerModels.some((model) => product.includes(model))
+          ? "Mobile Light Towers"
+          : product.includes("Diesel Generator")
+            ? "Diesel Generators"
+            : "Other",
+        source_page: window.location.pathname,
+      });
       form.reset();
     } catch {
       setStatus("error");
+    } finally {
+      submissionInProgress.current = false;
     }
   }
 
@@ -137,6 +155,22 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
         </select>
       </div>
       <div className="sm:col-span-2">
+        <label htmlFor="quantity" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-steel-600">
+          Quantity *
+        </label>
+        <input
+          id="quantity"
+          name="quantity"
+          type="number"
+          min="1"
+          max="1000000"
+          step="1"
+          required
+          className={inputClass}
+          placeholder="1"
+        />
+      </div>
+      <div className="sm:col-span-2">
         <label htmlFor="message" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-steel-600">
           Message *
         </label>
@@ -155,7 +189,10 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
         </button>
         {status === "error" && (
           <p className="mt-3 text-sm text-red-600">
-            Something went wrong. Please try again or email us directly.
+            We could not save your inquiry. Your information is still in the form, so please try again or contact us on{" "}
+            <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-bold underline">
+              WhatsApp
+            </a>.
           </p>
         )}
       </div>

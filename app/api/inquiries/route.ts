@@ -14,6 +14,7 @@ type InquiryInput = {
   email?: unknown;
   whatsapp?: unknown;
   product?: unknown;
+  quantity?: unknown;
   message?: unknown;
   sourcePageUrl?: unknown;
 };
@@ -30,6 +31,14 @@ function readText(value: unknown, field: string, maxLength: number, required = t
   if (required && !text) throw new ValidationError(`${field} is required.`);
   if (text.length > maxLength) throw new ValidationError(`${field} is too long.`);
   return text;
+}
+
+function readQuantity(value: unknown) {
+  const quantity = typeof value === "number" ? value : Number(value);
+  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 1_000_000) {
+    throw new ValidationError("Please enter a valid quantity.");
+  }
+  return quantity;
 }
 
 function getSourceDetails(sourcePageUrl: string) {
@@ -61,6 +70,7 @@ export async function POST(request: Request) {
     const email = readText(input.email, "Email", 254).toLowerCase();
     const whatsapp = readText(input.whatsapp, "WhatsApp", 60, false);
     const product = readText(input.product, "Product", 160);
+    const quantity = readQuantity(input.quantity);
     const message = readText(input.message, "Message", 5_000);
     const sourcePageUrl = readText(input.sourcePageUrl, "Source page URL", 1_000, false);
 
@@ -84,6 +94,7 @@ export async function POST(request: Request) {
       email,
       whatsapp,
       product,
+      quantity,
       message,
       sourcePage,
       sourceUrl,
