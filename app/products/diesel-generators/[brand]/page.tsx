@@ -140,18 +140,16 @@ export default async function DieselGeneratorBrandPage({ params }: BrandPageProp
         <div className="container-wide">
           <Reveal>
             <SectionHeading
-              eyebrow="50Hz Technical Reference"
-              title="Engine & Output Selection"
-              description="The table uses the confirmed engine/output reference supplied for this project. Generator set model codes from the source are intentionally not reproduced."
+              eyebrow="Supplied Technical Reference"
+              title="Generator Set Specifications"
+              description="Each product record and series grouping below follows the supplied parameter table for this engine brand. The source Detail / Click column is intentionally omitted."
             />
           </Reveal>
           <Reveal delay={80}>
             <div className="mt-8 border-l-4 border-orange-500 bg-white p-5 text-sm leading-relaxed text-steel-600">
-              Output values are shown as supplied. Final voltage, current,
-              alternator, controller, fuel consumption, dimensions, weight,
-              enclosure, and complete generator set model must be confirmed
-              for each quotation. A verified 60Hz model table has not yet been
-              provided.
+              Values are reproduced as supplied without calculation,
+              conversion, or reinterpretation. Final order configuration and
+              any 60Hz requirements are confirmed during quotation.
             </div>
           </Reveal>
           <Reveal delay={120}>
