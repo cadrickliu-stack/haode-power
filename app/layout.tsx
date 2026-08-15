@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
+import AnalyticsClickTracker from "@/components/AnalyticsClickTracker";
 import { site } from "@/lib/data";
 
 const barlow = Barlow_Condensed({
@@ -83,13 +84,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const analyticsEnabled = process.env.VERCEL_ENV === "production";
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: site.legalName,
     alternateName: site.name,
     url: site.url,
-    logo: `${site.url}/logo.svg`,
+    logo: `${site.url}/images/brand/hd-logo.png`,
     description: site.description,
     address: {
       "@type": "PostalAddress",
@@ -108,7 +110,6 @@ export default function RootLayout({
         availableLanguage: ["English", "Chinese"],
       },
     ],
-    sameAs: Object.values(site.socials),
   };
 
   return (
@@ -118,8 +119,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <GoogleAnalytics />
-        <AnalyticsPageView />
+        {analyticsEnabled && (
+          <>
+            <GoogleAnalytics />
+            <AnalyticsPageView />
+            <AnalyticsClickTracker />
+          </>
+        )}
         <Header />
         <main>{children}</main>
         <Footer />

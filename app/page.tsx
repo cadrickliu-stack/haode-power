@@ -4,10 +4,12 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
-import GeneratorCard from "@/components/GeneratorCard";
+import DieselBrandCard from "@/components/DieselBrandCard";
 import LightTowerCard from "@/components/LightTowerCard";
 import InquiryForm from "@/components/InquiryForm";
-import { advantages, dieselGeneratorCategory, generators, industries, lightTowerCategory, lightTowers, site } from "@/lib/data";
+import { advantages, dieselGeneratorCategory, industries, lightTowerCategory, site } from "@/lib/data";
+import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
+import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
 export const metadata: Metadata = {
   title: "Diesel Generators & Mobile Light Towers Manufacturer",
@@ -16,8 +18,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const featuredGenerators = [generators[1], generators[3], generators[4]];
-
   return (
     <>
       <Hero />
@@ -64,7 +64,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-8">
-                  <div className="eyebrow before:bg-orange-500">20kVA – 1000kVA</div>
+                  <div className="eyebrow before:bg-orange-500">Multi-Brand Series</div>
                   <h3 className="mt-2 font-display text-3xl font-700 uppercase text-white">
                     Diesel Generators
                   </h3>
@@ -106,25 +106,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Generators strip */}
+      {/* Featured diesel generator brand series */}
       <section className="bg-white py-24">
         <div className="container-wide">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading
                 eyebrow="Diesel Generator Sets"
-                title="Popular Models"
-                description="A sample of our range — full lineup spans 20kVA to 1000kVA."
+                title="Engine Brand Series"
+                description="Start with four key engine brand series, then view the complete published range and its confirmed 50Hz references."
               />
               <Link href="/products/diesel-generators" className="btn-dark">
-                View All Generators
+                View All Engine Brands
               </Link>
             </div>
           </Reveal>
-          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredGenerators.map((gen, i) => (
-              <Reveal key={gen.model} delay={i * 100}>
-                <GeneratorCard gen={gen} />
+          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {dieselGeneratorBrands.slice(0, 4).map((brand, i) => (
+              <Reveal key={brand.slug} delay={i * 100}>
+                <DieselBrandCard brand={brand} />
               </Reveal>
             ))}
           </div>
@@ -174,7 +174,7 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Mobile Light Towers"
                 title="Mobile Lighting Models"
-                description="Explore five towable lighting models, including the 4TNVE600 solar light tower. Verified specifications are available from our team."
+                description="Explore five towable lighting models with confirmed model specifications, including the 4TNVE600 solar light tower."
               />
               <Link href="/products/mobile-light-towers" className="btn-dark">
                 View All Light Towers
@@ -182,7 +182,7 @@ export default function HomePage() {
             </div>
           </Reveal>
           <div className="mt-12 space-y-8">
-            {lightTowers.map((tower, i) => (
+            {mobileLightTowers.map((tower, i) => (
               <Reveal key={tower.slug} delay={i * 100}>
                 <LightTowerCard tower={tower} />
               </Reveal>
