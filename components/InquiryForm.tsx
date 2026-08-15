@@ -26,6 +26,7 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 function InquiryFormInner({ compact = false }: { compact?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
+  const [inquiryId, setInquiryId] = useState("");
   const searchParams = useSearchParams();
   const prefillProduct = searchParams.get("product") || "";
 
@@ -36,12 +37,26 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
     const data = Object.fromEntries(new FormData(form).entries());
 
     try {
-      // Replace with your API route / CRM / email webhook endpoint.
-      await new Promise((resolve) => setTimeout(resolve, 900));
-      console.log("Inquiry submitted:", data);
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          sourcePageUrl: window.location.href,
+        }),
+      });
+      const result = (await response.json().catch(() => null)) as
+        | { success?: boolean; inquiryId?: string; error?: string }
+        | null;
+
+      if (!response.ok || !result?.success || !result.inquiryId) {
+        throw new Error(result?.error || "Unable to submit inquiry.");
+      }
+
+      setInquiryId(result.inquiryId);
       setStatus("success");
       form.reset();
-    } catch (err) {
+    } catch {
       setStatus("error");
     }
   }
@@ -58,8 +73,14 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
           Thank you for contacting Haode Power. Our export sales team will
           respond within 24 hours with a tailored quotation.
         </p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-steel-500">
+          Reference: {inquiryId}
+        </p>
         <button
-          onClick={() => setStatus("idle")}
+          onClick={() => {
+            setInquiryId("");
+            setStatus("idle");
+          }}
           className="focus-ring mt-2 text-sm font-bold uppercase tracking-wide text-orange-500 hover:text-orange-600"
         >
           Submit another inquiry
