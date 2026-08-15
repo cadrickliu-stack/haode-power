@@ -35,8 +35,8 @@ export default function AboutPage() {
         eyebrow="About Haode Power"
         title="Coordinating Reliable Power Solutions"
         description="Diesel generator sets and mobile light towers supplied through experienced manufacturing partners for mining, construction, and infrastructure applications."
-        image="/images/real/home/diesel-generator-production-line.webp"
-        imageAlt="Diesel generator production line at a manufacturing facility"
+        image="/images/real/about/generator-metal-processing-workshop.webp"
+        imageAlt="Metal processing workshop at a manufacturing partner facility"
       />
 
       {/* Company Introduction */}
@@ -134,8 +134,8 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative col-span-2 h-52 overflow-hidden">
                 <Image
-                  src="/images/real/about/manufacturing-partner-batch-delivery.webp"
-                  alt="Batch delivery prepared at a manufacturing partner facility"
+                  src="/images/real/about/generator-frame-metal-fabrication.webp"
+                  alt="Generator frame metal fabrication at a manufacturing partner facility"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -143,8 +143,8 @@ export default function AboutPage() {
               </div>
               <div className="relative h-40 overflow-hidden">
                 <Image
-                  src="/images/real/home/diesel-generators-ready-for-shipment.webp"
-                  alt="Generator sets ready for shipment"
+                  src="/images/real/about/generator-spare-parts-warehouse.webp"
+                  alt="Generator spare parts warehouse inventory"
                   fill
                   className="object-cover"
                   sizes="25vw"
@@ -152,8 +152,8 @@ export default function AboutPage() {
               </div>
               <div className="relative h-40 overflow-hidden">
                 <Image
-                  src="/images/real/about/diesel-generator-site-installation-team.webp"
-                  alt="Technical team checking a diesel generator installation"
+                  src="/images/real/about/generator-quality-control-room.webp"
+                  alt="Generator quality control and inspection room"
                   fill
                   className="object-cover"
                   sizes="25vw"

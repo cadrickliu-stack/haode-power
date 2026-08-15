@@ -31,8 +31,8 @@ export const dieselGeneratorCategory = {
 };
 
 export const lightTowerHero = {
-  image: "/images/products/mobile-light-towers/hero-light-tower-construction.jpg",
-  alt: "Mobile light tower for construction site",
+  image: "/images/real/products/mobile-light-towers/mobile-light-tower-series-hero.webp",
+  alt: "BMNVH1600 mobile light tower product views",
 };
 
 export const lightTowerCategory = {
@@ -50,10 +50,9 @@ export const industries = [
   },
   {
     name: "Construction",
-    image:
-      "https://images.unsplash.com/photo-1541976590-713941681591?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/real/applications/diesel-generator-site-commissioning.webp",
     description:
-      "Compact, towable power and lighting for fast-moving job sites and multi-phase builds.",
+      "Generator commissioning and mobile power support for active construction and industrial project sites.",
   },
   {
     name: "Oil & Gas",
@@ -64,17 +63,15 @@ export const industries = [
   },
   {
     name: "Rental",
-    image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/real/applications/generator-spare-parts-inventory.webp",
     description:
-      "Fleet-standardized models built for turnaround durability, easy servicing, and resale value.",
+      "Service-friendly fleet support backed by organized spare-parts inventory for faster maintenance turnaround.",
   },
   {
     name: "Infrastructure",
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/real/applications/diesel-generator-power-room-installation.webp",
     description:
-      "Dependable backup and prime power for government, utility, and public works projects.",
+      "Installed generator systems for utility, public works, and other infrastructure power rooms.",
   },
 ];
 
