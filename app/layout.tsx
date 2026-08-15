@@ -89,7 +89,7 @@ export default function RootLayout({
     name: site.legalName,
     alternateName: site.name,
     url: site.url,
-    logo: `${site.url}/logo.svg`,
+    logo: `${site.url}/images/brand/hd-logo.png`,
     description: site.description,
     address: {
       "@type": "PostalAddress",

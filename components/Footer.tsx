@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site, navLinks } from "@/lib/data";
 
 export default function Footer() {
@@ -8,14 +9,16 @@ export default function Footer() {
     <footer className="bg-ink text-white/70">
       <div className="container-wide grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="mb-4 flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center bg-orange-500 font-display text-lg font-800 text-white [clip-path:polygon(15%_0,100%_0,85%_100%,0_100%)]">
-              H
-            </span>
-            <span className="font-display text-xl font-700 tracking-wide text-white">
-              HAODE <span className="text-orange-400">POWER</span>
-            </span>
-          </div>
+          <Link href="/" className="focus-ring mb-4 inline-flex items-center" aria-label="Haode Power home">
+            <Image
+              src="/images/brand/hd-logo.png"
+              alt="HD logo"
+              width={2079}
+              height={756}
+              className="h-12 w-auto object-contain"
+              sizes="132px"
+            />
+          </Link>
           <p className="text-sm leading-relaxed">
             Manufacturer of diesel generator sets and mobile light towers,
             engineered for mining, construction, oil &amp; gas, and rental

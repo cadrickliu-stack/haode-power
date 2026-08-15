@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/lib/data";
@@ -31,13 +32,16 @@ export default function Header() {
     >
       <div className="h-1 w-full bg-gradient-to-r from-orange-600 via-orange-400 to-orange-600" />
       <div className="container-wide flex items-center justify-between py-4">
-        <Link href="/" className="group flex items-center gap-3 focus-ring">
-          <span className="flex h-10 w-10 items-center justify-center bg-orange-500 font-display text-xl font-800 text-white [clip-path:polygon(15%_0,100%_0,85%_100%,0_100%)]">
-            H
-          </span>
-          <span className="font-display text-2xl font-700 leading-none tracking-wide text-white">
-            HAODE <span className="text-orange-400">POWER</span>
-          </span>
+        <Link href="/" className="focus-ring flex shrink-0 items-center" aria-label="Haode Power home">
+          <Image
+            src="/images/brand/hd-logo.png"
+            alt="HD logo"
+            width={2079}
+            height={756}
+            priority
+            className="h-10 w-auto object-contain sm:h-11"
+            sizes="(max-width: 640px) 110px, 122px"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
