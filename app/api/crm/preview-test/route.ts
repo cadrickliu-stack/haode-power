@@ -40,6 +40,7 @@ function dateValue(record: Awaited<ReturnType<typeof findLeadByInquiryId>>, fiel
 
 async function createTestLead(label: string) {
   const suffix = `${Date.now()}-${label}`;
+  const domainSuffix = `${Date.now()}-${label.toLowerCase().replaceAll(" ", "-")}`;
   const body = {
     company: `Haode Power ${label} Test ${suffix}`,
     country: "China",
@@ -47,7 +48,7 @@ async function createTestLead(label: string) {
     jobTitle: "Test Contact",
     email: TEST_RECIPIENT,
     website: "https://www.haodepower.com",
-    companyDomain: `crm-${suffix}.example.test`,
+    companyDomain: `crm-${domainSuffix}.example.test`,
     product: "BMN4000",
     priority: "C - Low Priority",
     status: "Ready to Contact",
