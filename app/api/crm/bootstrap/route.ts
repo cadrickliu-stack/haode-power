@@ -12,7 +12,14 @@ export async function POST(request: Request) {
     return Response.json({ success: false, error: "Confirmation is required." }, { status: 400 });
   }
   try {
-    return Response.json({ success: true, result: await ensureHaodeCrmSchema() });
+    return Response.json({
+      success: true,
+      result: await ensureHaodeCrmSchema(),
+      configuration: {
+        crmAdminApiKey: Boolean(process.env.CRM_ADMIN_API_KEY),
+        resendApiKey: Boolean(process.env.RESEND_API_KEY),
+      },
+    });
   } catch (error) {
     console.error("Unable to bootstrap Lark CRM schema", error);
     return Response.json({ success: false, error: "Lark CRM schema setup failed." }, { status: 502 });
