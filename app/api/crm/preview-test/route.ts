@@ -62,7 +62,9 @@ async function createTestLead(label: string) {
   );
   const result = await responseJson(response);
   if (response.status !== 201 || result.success !== true || typeof result.inquiryId !== "string") {
-    throw new Error(`Unable to create ${label} test lead (HTTP ${response.status}).`);
+    throw new Error(
+      `Unable to create ${label} test lead (HTTP ${response.status}): ${String(result.error ?? "unknown error")}`,
+    );
   }
   return result.inquiryId;
 }
