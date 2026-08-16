@@ -8,9 +8,9 @@ import { site, lightTowerHero } from "@/lib/data";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
 export const metadata: Metadata = {
-  title: "Mobile Light Towers | Five Product Models",
+  title: "Mobile Light Towers | Diesel, LED & Solar Models",
   description:
-    "Explore Haode Power mobile light tower models BMA4000, BMN4000, BMNVH1600, 4HVP1600M, and the 4TNVE600 solar light tower.",
+    "Explore diesel, LED, heavy-duty mining, and solar mobile light towers for construction, rental, roadwork, and industrial site lighting.",
   alternates: { canonical: "/products/mobile-light-towers" },
 };
 
@@ -21,12 +21,8 @@ export default function LightTowersPage() {
     itemListElement: mobileLightTowers.map((t, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      item: {
-        "@type": "Product",
-        name: `${site.name} ${t.name}`,
-        description: t.shortDescription,
-        url: `${site.url}/products/mobile-light-towers/${t.slug}`,
-      },
+      name: t.title,
+      url: `${site.url}/products/mobile-light-towers/${t.slug}`,
     })),
   };
 
@@ -40,7 +36,7 @@ export default function LightTowersPage() {
       <PageHero
         eyebrow="Job Site Illumination"
         title="Mobile Light Towers"
-        description="Five mobile lighting models for professional site illumination, including the 4TNVE600 solar light tower, with confirmed specifications published for each model."
+        description="Mobile lighting towers for construction, mining, rental, roadwork, and industrial sites, including diesel light tower, LED, hydraulic-mast, and solar-powered options."
         image={lightTowerHero.image}
         imageAlt={lightTowerHero.alt}
       />
@@ -66,8 +62,8 @@ export default function LightTowersPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Current Product Range"
-              title="Five Mobile Light Tower Models"
-              description="Review the available models below. Technical specifications are confirmed per model and project requirement."
+              title="Diesel, LED & Solar Mobile Lighting Towers"
+              description="Review five mobile light tower models, from compact diesel light towers to a heavy-duty hydraulic mining light tower and a solar LED light tower."
             />
           </Reveal>
           <div className="mt-12 space-y-8">

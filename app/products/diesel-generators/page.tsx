@@ -11,9 +11,9 @@ import {
 } from "@/lib/diesel-generator-brands";
 
 export const metadata: Metadata = {
-  title: "Diesel Generator Series by Engine Brand",
+  title: "Diesel Generator Sets by Engine Brand",
   description:
-    "Explore diesel generator sets by engine brand, with verified 50Hz reference tables for Cummins, Perkins, Volvo, MTU, Yuchai, Weichai, SDEC, and Doosan series.",
+    "Explore Haode Power diesel generator sets by engine brand, including Cummins, Perkins, Volvo, MTU, Doosan, Weichai, Yuchai, and SDEC series with model specifications.",
   alternates: { canonical: "/products/diesel-generators" },
 };
 
@@ -39,8 +39,8 @@ export default function DieselGeneratorsPage() {
 
       <PageHero
         eyebrow="Engine Brand Series"
-        title="Diesel Generator Series"
-        description="Choose a generator series by engine brand. Published pages use real product photography and only the technical data confirmed for that series."
+        title="Diesel Generator Sets"
+        description="Choose a diesel generator series by engine brand for industrial, mining, construction, rental, and standby power applications. Each page presents model-specific technical references."
         image={dieselGeneratorCategory.image}
         imageAlt={dieselGeneratorCategory.alt}
       />
@@ -69,8 +69,8 @@ export default function DieselGeneratorsPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Published Brand Series"
-              title="Select an Engine Brand"
-              description="Open a brand series to review its real product photo and confirmed 50Hz engine and output references. Final order configuration is confirmed during quotation."
+              title="Diesel Generator Series by Engine Brand"
+              description="Compare Cummins, Perkins, Volvo, MTU, Doosan, Weichai, Yuchai, and SDEC diesel generator models. Final generator set configuration is confirmed during quotation."
             />
           </Reveal>
           <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">

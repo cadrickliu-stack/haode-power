@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
   }
 
   return {
-    title: brand.title,
-    description: brand.shortDescription,
+    title: `${brand.name} Diesel Generators & Generator Sets`,
+    description: `Explore ${brand.name} diesel generator sets with engine models, output data, dimensions, weight, and technical references for industrial and commercial power projects.`,
     alternates: {
       canonical: `/products/diesel-generators/${brand.slug}`,
     },
     openGraph: {
-      title: `${brand.title} | ${site.name}`,
-      description: brand.shortDescription,
+      title: `${brand.name} Diesel Generators | ${site.name}`,
+      description: `Explore ${brand.name} diesel generator sets and model-specific technical references from Haode Power.`,
       images: [{ url: brand.image, alt: brand.imageAlt }],
     },
   };

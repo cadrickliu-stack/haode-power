@@ -30,10 +30,15 @@ export async function generateMetadata({
   }
 
   const canonical = `/products/mobile-light-towers/${tower.slug}`;
+  const seoLabel = tower.model === "4HVP1600M"
+    ? "Heavy Duty Mining Light Tower"
+    : tower.powerSource === "Solar + Battery"
+      ? "Solar LED Mobile Light Tower"
+      : "Diesel Mobile Light Tower";
 
   return {
-    title: tower.title,
-    description: tower.shortDescription,
+    title: `${tower.model} ${seoLabel}`,
+    description: `${tower.model} ${seoLabel.toLowerCase()} with ${tower.mastHeight} mast, ${tower.lighting}, and model-specific specifications for construction and industrial site lighting.`,
     alternates: { canonical },
     openGraph: {
       title: `${tower.title} | ${site.name}`,
@@ -78,16 +83,6 @@ export default async function MobileLightTowerPage({
       },
     ],
   };
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: tower.title,
-    model: tower.model,
-    image: `${site.url}${tower.image}`,
-    description: tower.shortDescription,
-    category: "Mobile Light Tower",
-    url: detailUrl,
-  };
   const quoteHref = `/contact?product=${encodeURIComponent(tower.name)}`;
 
   return (
@@ -96,11 +91,6 @@ export default async function MobileLightTowerPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
-
       <nav aria-label="Breadcrumb" className="border-b border-navy-900/10 bg-white">
         <ol className="container-wide flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 py-4 text-xs font-bold uppercase tracking-wide text-steel-500">
           <li>

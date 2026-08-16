@@ -12,8 +12,9 @@ import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
 export const metadata: Metadata = {
-  title: "Diesel Generators & Mobile Light Towers Manufacturer",
-  description: site.description,
+  title: "Diesel Generator & Mobile Light Tower Manufacturer",
+  description:
+    "Haode Power supplies diesel generator sets and mobile light towers for mining, construction, rental, and industrial projects, with model-specific product information and quotation support.",
   alternates: { canonical: "/" },
 };
 
@@ -47,8 +48,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Our Product Range"
-              title="Built for Continuous, Demanding Duty"
-              description="Two core product lines, engineered together: prime and standby power generation, and mobile lighting for round-the-clock operations."
+              title="Diesel Generator Sets & Mobile Light Towers"
+              description="Explore diesel generator sets by engine brand and mobile lighting tower models for mining, construction, rental, and industrial site operations."
             />
           </Reveal>
 
@@ -69,7 +70,7 @@ export default function HomePage() {
                     Diesel Generators
                   </h3>
                   <p className="mt-2 max-w-md text-sm text-white/70">
-                    Prime and standby generator sets for mining, construction, and industrial facilities.
+                    Diesel generator sets by established engine brand for mining, construction, and industrial power applications.
                   </p>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-orange-400">
                     Explore Range <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
