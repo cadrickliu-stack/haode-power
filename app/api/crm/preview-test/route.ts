@@ -13,6 +13,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const TEST_RECIPIENT = "sales@haodepower.com";
+const ONE_TIME_TRIGGER = "7a3f4be2d09c46c48f6627ee17a8b4b1";
 
 function adminRequest(path: string, body: Record<string, unknown>) {
   const key = process.env.CRM_ADMIN_API_KEY;
@@ -71,10 +72,14 @@ export async function POST(request: Request) {
     return Response.json({ success: false, error: "Not found." }, { status: 404 });
   }
 
-  const expected = process.env.CRM_ADMIN_API_KEY;
-  const supplied = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ?? "";
-  if (!expected || supplied !== expected) {
+  if (request.headers.get("x-preview-test-trigger") !== ONE_TIME_TRIGGER) {
     return Response.json({ success: false, error: "Unauthorized." }, { status: 401 });
+  }
+  if (!process.env.CRM_ADMIN_API_KEY) {
+    return Response.json(
+      { success: false, error: "CRM_ADMIN_API_KEY is not configured in Preview." },
+      { status: 503 },
+    );
   }
   if (!process.env.RESEND_API_KEY) {
     return Response.json(
