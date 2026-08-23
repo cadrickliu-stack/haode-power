@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import LightTowerSpecifications from "@/components/LightTowerSpecifications";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { site } from "@/lib/data";
 import {
   getMobileLightTower,
@@ -58,54 +59,18 @@ export default async function MobileLightTowerPage({
 
   if (!tower) notFound();
 
-  const detailUrl = `${site.url}/products/mobile-light-towers/${tower.slug}`;
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Products",
-        item: `${site.url}/products`,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Mobile Light Towers",
-        item: `${site.url}/products/mobile-light-towers`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: tower.model,
-        item: detailUrl,
-      },
-    ],
-  };
   const quoteHref = `/contact?product=${encodeURIComponent(tower.name)}`;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Products", href: "/products" },
+          { name: "Mobile Light Towers", href: "/products/mobile-light-towers" },
+          { name: tower.model, href: `/products/mobile-light-towers/${tower.slug}` },
+        ]}
       />
-      <nav aria-label="Breadcrumb" className="border-b border-navy-900/10 bg-white">
-        <ol className="container-wide flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 py-4 text-xs font-bold uppercase tracking-wide text-steel-500">
-          <li>
-            <Link href="/products" className="focus-ring hover:text-orange-500">Products</Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li>
-            <Link href="/products/mobile-light-towers" className="focus-ring hover:text-orange-500">
-              Mobile Light Towers
-            </Link>
-          </li>
-          <li aria-hidden>/</li>
-          <li className="text-navy-900" aria-current="page">{tower.model}</li>
-        </ol>
-      </nav>
 
       <section className="overflow-hidden bg-navy-950 py-12 text-white sm:py-16 lg:py-20">
         <div className="container-wide grid min-w-0 grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
@@ -151,6 +116,28 @@ export default async function MobileLightTowerPage({
               </Link>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="border-y border-navy-900/10 bg-paper py-16">
+        <div className="container-wide">
+          <h2 className="font-display text-3xl font-700 uppercase text-navy-900">
+            Compare Other Mobile Light Tower Models
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-steel-600">
+            Review alternative diesel, LED and solar mobile lighting tower models before confirming the power source, mast system and runtime for your site.
+          </p>
+          <nav aria-label="Other mobile light tower models" className="mt-7 flex flex-wrap gap-3">
+            {mobileLightTowers.filter((item) => item.slug !== tower.slug).map((item) => (
+              <Link
+                key={item.slug}
+                href={`/products/mobile-light-towers/${item.slug}`}
+                className="focus-ring border border-navy-900/15 bg-white px-4 py-3 font-display font-700 uppercase text-navy-900 hover:border-orange-500 hover:text-orange-600"
+              >
+                {item.model}
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 

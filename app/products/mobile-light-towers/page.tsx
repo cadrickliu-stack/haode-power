@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import LightTowerCard from "@/components/LightTowerCard";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { site, lightTowerHero } from "@/lib/data";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
@@ -12,6 +13,12 @@ export const metadata: Metadata = {
   description:
     "Explore diesel, LED, heavy-duty mining, and solar mobile light towers for construction, rental, roadwork, and industrial site lighting.",
   alternates: { canonical: "/products/mobile-light-towers" },
+  openGraph: {
+    title: "Mobile Light Towers | Diesel, LED & Solar Models",
+    description: "Compare five towable mobile lighting tower models for construction, mining support, roadwork and rental use.",
+    url: "/products/mobile-light-towers",
+    images: [{ url: lightTowerHero.image, alt: lightTowerHero.alt }],
+  },
 };
 
 export default function LightTowersPage() {
@@ -31,6 +38,14 @@ export default function LightTowersPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Products", href: "/products" },
+          { name: "Mobile Light Towers", href: "/products/mobile-light-towers" },
+        ]}
       />
 
       <PageHero
@@ -54,6 +69,34 @@ export default function LightTowersPage() {
               <div className="text-xs font-semibold uppercase tracking-wide text-steel-500">{f.label}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-paper py-24">
+        <div className="container-wide grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Selection Guide"
+              title="Choose a Mobile Lighting Tower for the Site"
+              description="The useful comparison is not only lamp power. Mast operation, runtime, towing layout and available power source also affect day-to-day use."
+            />
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="space-y-5 text-sm leading-relaxed text-steel-600">
+              <div className="border-l-4 border-orange-500 bg-white p-6">
+                <h2 className="font-display text-xl font-700 uppercase text-navy-900">Diesel Light Towers</h2>
+                <p className="mt-2">BMA4000, BMN4000, BMNVH1600 and 4HVP1600M use diesel power and offer confirmed metal-halide or LED configurations. Compare mast height, lifting method, tank capacity and runtime on each model page.</p>
+              </div>
+              <div className="border-l-4 border-orange-500 bg-white p-6">
+                <h2 className="font-display text-xl font-700 uppercase text-navy-900">Solar LED Light Tower</h2>
+                <p className="mt-2">The 4TNVE600 combines monocrystalline solar panels, GEL batteries and four LED lamps for sites where solar-and-battery operation fits the lighting plan.</p>
+              </div>
+              <div className="border-l-4 border-orange-500 bg-white p-6">
+                <h2 className="font-display text-xl font-700 uppercase text-navy-900">Mining & Heavy-Duty Mast Operation</h2>
+                <p className="mt-2">For projects prioritizing mast control, the 4HVP1600M provides a confirmed hydraulic eight-section mast with electric light tilt. Final suitability still depends on the site and towing conditions.</p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

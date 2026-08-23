@@ -5,6 +5,7 @@ import Reveal from "@/components/Reveal";
 import DieselBrandCard from "@/components/DieselBrandCard";
 import LightTowerCard from "@/components/LightTowerCard";
 import PageHero from "@/components/PageHero";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { dieselGeneratorCategory } from "@/lib/data";
 import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
@@ -12,13 +13,19 @@ import { mobileLightTowers } from "@/lib/mobile-light-towers";
 export const metadata: Metadata = {
   title: "Products | Diesel Generators & Mobile Light Towers",
   description:
-    "Browse Haode Power diesel generator series by engine brand and five current mobile light tower models.",
+    "Browse diesel generator sets by engine brand and mobile light towers for mining, construction, rental, and industrial applications.",
   alternates: { canonical: "/products" },
+  openGraph: {
+    title: "Diesel Generators & Mobile Light Towers | Haode Power",
+    description: "Compare Haode Power diesel generator series and five mobile light tower models.",
+    url: "/products",
+  },
 };
 
 export default function ProductsPage() {
   return (
     <>
+      <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Products", href: "/products" }]} />
       <PageHero
         eyebrow="Full Product Range"
         title="Products"
@@ -33,8 +40,8 @@ export default function ProductsPage() {
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading
                 eyebrow="Engine Brand Series"
-                title="Diesel Generators"
-                description="Explore eight published diesel generator series by engine brand, with confirmed 50Hz reference data and product configurations."
+                title="Diesel Generator Sets"
+                description="Explore eight diesel generator series by engine brand. Each brand page connects the supplied generator set type to its engine model and technical reference data."
               />
               <Link href="/products/diesel-generators" className="btn-dark">
                 Full Specifications
@@ -58,7 +65,7 @@ export default function ProductsPage() {
               <SectionHeading
                 eyebrow="Five Product Models"
                 title="Mobile Light Towers"
-                description="Explore BMA4000, BMN4000, BMNVH1600, 4HVP1600M, and the 4TNVE600 solar light tower."
+                description="Compare diesel, LED and solar mobile lighting towers for night construction, roads, mining support and rental fleets."
               />
               <Link href="/products/mobile-light-towers" className="btn-dark">
                 Full Specifications

@@ -111,6 +111,18 @@ export default function RootLayout({
       },
     ],
   };
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    url: site.url,
+    publisher: {
+      "@type": "Organization",
+      name: site.legalName,
+      url: site.url,
+    },
+    inLanguage: "en",
+  };
 
   return (
     <html lang="en" className={`${barlow.variable} ${inter.variable} ${mono.variable}`}>
@@ -118,6 +130,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         {analyticsEnabled && (
           <>

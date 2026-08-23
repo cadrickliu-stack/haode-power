@@ -4,6 +4,7 @@ import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date("2026-08-23T00:00:00.000Z");
   const routes = [
     "",
     "/products",
@@ -21,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((route) => ({
     url: `${site.url}${route}`,
-    lastModified: new Date(),
+    lastModified,
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : route.startsWith("/products") ? 0.9 : 0.7,
   }));

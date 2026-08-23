@@ -29,9 +29,9 @@ export default function DieselBrandCard({
         </div>
         <div className="p-6 sm:p-8">
           <div className="eyebrow">Engine Brand</div>
-          <h2 className="mt-3 font-display text-3xl font-700 uppercase text-navy-900">
+          <h3 className="mt-3 font-display text-3xl font-700 uppercase text-navy-900">
             {brand.name}
-          </h2>
+          </h3>
           <p className="mt-3 text-sm leading-relaxed text-steel-600">
             {brand.shortDescription}
           </p>

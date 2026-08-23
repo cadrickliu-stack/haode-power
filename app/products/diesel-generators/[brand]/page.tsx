@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import GeneratorSpecificationTable from "@/components/GeneratorSpecificationTable";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import {
   dieselGeneratorBrands,
   getDieselGeneratorBrand,
@@ -52,36 +53,15 @@ export default async function DieselGeneratorBrandPage({ params }: BrandPageProp
     (total, group) => total + group.models.length,
     0,
   );
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Products",
-        item: `${site.url}/products`,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Diesel Generators",
-        item: `${site.url}/products/diesel-generators`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: brand.name,
-        item: `${site.url}/products/diesel-generators/${brand.slug}`,
-      },
-    ],
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Products", href: "/products" },
+          { name: "Diesel Generators", href: "/products/diesel-generators" },
+          { name: brand.name, href: `/products/diesel-generators/${brand.slug}` },
+        ]}
       />
 
       <PageHero
@@ -133,6 +113,28 @@ export default async function DieselGeneratorBrandPage({ params }: BrandPageProp
               Request a Quote
             </Link>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="border-y border-navy-900/10 bg-paper py-16">
+        <div className="container-wide">
+          <h2 className="font-display text-3xl font-700 uppercase text-navy-900">
+            Explore Other Diesel Generator Brands
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-steel-600">
+            Compare this {brand.name} diesel generator series with the other published engine brand pages before requesting a project-specific selection.
+          </p>
+          <nav aria-label="Other diesel generator brands" className="mt-7 flex flex-wrap gap-3">
+            {dieselGeneratorBrands.filter((item) => item.slug !== brand.slug).map((item) => (
+              <Link
+                key={item.slug}
+                href={`/products/diesel-generators/${item.slug}`}
+                className="focus-ring border border-navy-900/15 bg-white px-4 py-3 font-display font-700 uppercase text-navy-900 hover:border-orange-500 hover:text-orange-600"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 

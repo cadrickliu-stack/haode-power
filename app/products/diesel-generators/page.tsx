@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import DieselBrandCard from "@/components/DieselBrandCard";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { dieselGeneratorCategory, site } from "@/lib/data";
 import {
   dieselGeneratorBrands,
@@ -15,6 +16,12 @@ export const metadata: Metadata = {
   description:
     "Explore Haode Power diesel generator sets by engine brand, including Cummins, Perkins, Volvo, MTU, Doosan, Weichai, Yuchai, and SDEC series with model specifications.",
   alternates: { canonical: "/products/diesel-generators" },
+  openGraph: {
+    title: "Diesel Generator Sets by Engine Brand | Haode Power",
+    description: "Compare eight diesel generator engine brand series and model-specific technical tables.",
+    url: "/products/diesel-generators",
+    images: [{ url: dieselGeneratorCategory.image, alt: dieselGeneratorCategory.alt }],
+  },
 };
 
 export default function DieselGeneratorsPage() {
@@ -35,6 +42,14 @@ export default function DieselGeneratorsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(seriesSchema) }}
+      />
+
+      <Breadcrumbs
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Products", href: "/products" },
+          { name: "Diesel Generators", href: "/products/diesel-generators" },
+        ]}
       />
 
       <PageHero
@@ -61,6 +76,33 @@ export default function DieselGeneratorsPage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-white py-24">
+        <div className="container-wide grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Generator Selection"
+              title="How to Choose a Diesel Generator Set"
+              description="Start with the site load and electrical requirement, then select the engine series and physical configuration that fit the project."
+            />
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              {[
+                ["1. Required Output", "Provide the required kW or kVA and identify the loads the generator will support."],
+                ["2. Electrical System", "Confirm frequency, voltage and phase so the final generator set can be matched correctly."],
+                ["3. Site & Enclosure", "Explain whether the unit will operate indoors or outdoors and whether an open, silent or containerized format is required."],
+                ["4. Delivery Scope", "Share quantity, destination and requested options so the complete quotation scope can be confirmed."],
+              ].map(([title, text]) => (
+                <article key={title} className="border-l-4 border-orange-500 bg-paper p-6">
+                  <h2 className="font-display text-xl font-700 uppercase text-navy-900">{title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-steel-600">{text}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
