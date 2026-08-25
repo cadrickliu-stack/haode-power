@@ -9,9 +9,9 @@ function AnalyticsPageViewInner() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const query = searchParams.toString();
-    const url = query ? `${pathname}?${query}` : pathname;
-    pageview(url);
+    // Keep GA page paths free of query-string values. Product attribution is
+    // sent separately on conversion events, without customer information.
+    pageview(pathname);
   }, [pathname, searchParams]);
 
   return null;
