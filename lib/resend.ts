@@ -25,6 +25,7 @@ export async function sendOutboundEmail(input: {
   subject: string;
   body: string;
   inquiryId: string;
+  idempotencyKey?: string;
 }) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) throw new Error("RESEND_API_KEY is not configured.");
@@ -34,7 +35,7 @@ export async function sendOutboundEmail(input: {
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
-      "Idempotency-Key": `haode-initial-outbound-${input.inquiryId}`,
+      "Idempotency-Key": input.idempotencyKey ?? `haode-initial-outbound-${input.inquiryId}`,
     },
     body: JSON.stringify({
       from: FROM,

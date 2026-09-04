@@ -370,6 +370,9 @@ export async function markOutboundEmailSent(
   resendEmailId: string,
   sentAt: number,
   nextFollowUp: number,
+  recipientEmail: string,
+  sentEmailSubject: string,
+  emailCampaign: string,
 ) {
   const tableId = getWebsiteInquiriesTableId();
   const fields = await prepareFields(tableId, {
@@ -379,6 +382,48 @@ export async function markOutboundEmailSent(
     "Email Sent At": { value: sentAt, allowedTypes: [5], required: true },
     "Last Contact": { value: sentAt, allowedTypes: [5], required: true },
     "Next Follow-up": { value: nextFollowUp, allowedTypes: [5], required: true },
+    "Recipient Email": { value: recipientEmail, allowedTypes: [1], required: true },
+    "Sent Email Subject": { value: sentEmailSubject, allowedTypes: [1], required: true },
+    "Email Campaign": { value: emailCampaign, allowedTypes: [1], required: true },
+  });
+  await updateLarkRecord(tableId, recordId, fields);
+}
+
+export async function markOutboundEmailPending(
+  recordId: string,
+  recipientEmail: string,
+  sentEmailSubject: string,
+  emailCampaign: string,
+  attemptedAt: number,
+) {
+  const tableId = getWebsiteInquiriesTableId();
+  const fields = await prepareFields(tableId, {
+    "Email Status": { value: "Pending", allowedTypes: [1, 3], required: true },
+    "Recipient Email": { value: recipientEmail, allowedTypes: [1], required: true },
+    "Sent Email Subject": { value: sentEmailSubject, allowedTypes: [1], required: true },
+    "Email Campaign": { value: emailCampaign, allowedTypes: [1], required: true },
+    "Email Attempted At": { value: attemptedAt, allowedTypes: [5], required: true },
+  });
+  await updateLarkRecord(tableId, recordId, fields);
+}
+
+export async function markOutboundEmailFailed(
+  recordId: string,
+  recipientEmail: string,
+  sentEmailSubject: string,
+  emailCampaign: string,
+  attemptedAt: number,
+  failureReason: string,
+) {
+  const tableId = getWebsiteInquiriesTableId();
+  const fields = await prepareFields(tableId, {
+    Status: { value: "Researching", allowedTypes: [1, 3], required: true },
+    "Email Status": { value: "Failed", allowedTypes: [1, 3], required: true },
+    "Recipient Email": { value: recipientEmail, allowedTypes: [1], required: true },
+    "Sent Email Subject": { value: sentEmailSubject, allowedTypes: [1], required: true },
+    "Email Campaign": { value: emailCampaign, allowedTypes: [1], required: true },
+    "Email Attempted At": { value: attemptedAt, allowedTypes: [5], required: true },
+    "Email Failure Reason": { value: failureReason, allowedTypes: [1], required: true },
   });
   await updateLarkRecord(tableId, recordId, fields);
 }
