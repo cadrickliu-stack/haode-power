@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from "node:crypto";
 import { authorizeCrmAdmin } from "@/lib/crm-admin";
+import { crmEmailJsonResponse, type CrmEmailApiPayload } from "@/lib/crm-email-response";
 import {
   CrmValidationError,
   fieldText,
@@ -98,8 +99,30 @@ function resendIdempotencyKey(record: NonNullable<Awaited<ReturnType<typeof find
 }
 
 export async function POST(request: Request) {
+  const startedAt = Date.now();
+  const requestId = request.headers.get("x-vercel-id") || randomUUID();
+  const respond = (payload: CrmEmailApiPayload, status: number) => {
+    console.log(
+      JSON.stringify({
+        level: "info",
+        event: "crm-send-email-response",
+        requestId,
+        inquiryId: payload.inquiryId,
+        status,
+        success: payload.success,
+        durationMs: Date.now() - startedAt,
+      }),
+    );
+    return crmEmailJsonResponse(payload, status, requestId);
+  };
   const auth = authorizeCrmAdmin(request);
-  if (!auth.ok) return auth.response;
+  if (!auth.ok) {
+    const authPayload = (await auth.response.json()) as { error?: string };
+    return respond(
+      { success: false, error: authPayload.error || "CRM admin authorization failed." },
+      auth.response.status,
+    );
+  }
 
   try {
     const body = (await request.json()) as Record<string, unknown>;
@@ -189,6 +212,9 @@ export async function POST(request: Request) {
       INITIAL_EMAIL_CAMPAIGN,
       attemptedAt,
     );
+    console.log(
+      JSON.stringify({ level: "info", event: "crm-send-email-pending", requestId, inquiryId, durationMs: Date.now() - startedAt }),
+    );
 
     let resendEmailId: string;
     try {
@@ -199,6 +225,9 @@ export async function POST(request: Request) {
         inquiryId,
         idempotencyKey: resendIdempotencyKey(lead),
       });
+      console.log(
+        JSON.stringify({ level: "info", event: "crm-send-email-accepted", requestId, inquiryId, durationMs: Date.now() - startedAt }),
+      );
     } catch (sendError) {
       const failureReason =
         sendError instanceof Error ? sendError.message.slice(0, 1_000) : "Unknown Resend failure.";
@@ -227,9 +256,9 @@ export async function POST(request: Request) {
         console.error("Email failed and one or more CRM failure writes also failed", failureWriteResults);
       }
       console.error("Resend rejected approved outbound email", sendError);
-      return Response.json(
+      return respond(
         { success: false, inquiryId, error: "The email failed and was not automatically retried." },
-        { status: 502 },
+        502,
       );
     }
 
@@ -259,29 +288,32 @@ export async function POST(request: Request) {
     ]);
     if (crmResults.some((result) => result.status === "rejected")) {
       console.error("Email sent but one or more CRM writes failed", crmResults);
-      return Response.json(
+      return respond(
         {
           success: false,
           inquiryId,
           resendEmailId,
           error: "Email sent, but CRM recording requires reconciliation. Do not resend.",
         },
-        { status: 502 },
+        502,
       );
     }
 
-    return Response.json({ success: true, inquiryId, resendEmailId });
+    console.log(
+      JSON.stringify({ level: "info", event: "crm-send-email-recorded", requestId, inquiryId, durationMs: Date.now() - startedAt }),
+    );
+    return respond({ success: true, inquiryId, resendEmailId }, 200);
   } catch (error) {
     if (error instanceof CrmValidationError) {
-      return Response.json({ success: false, error: error.message }, { status: 400 });
+      return respond({ success: false, error: error.message }, 400);
     }
     if (error instanceof SyntaxError) {
-      return Response.json({ success: false, error: "Invalid request." }, { status: 400 });
+      return respond({ success: false, error: "Invalid request." }, 400);
     }
     console.error("Unable to send approved outbound email", error);
-    return Response.json(
+    return respond(
       { success: false, error: "The email or CRM update failed. Please review the server logs." },
-      { status: 502 },
+      502,
     );
   }
 }
