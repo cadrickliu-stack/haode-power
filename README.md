@@ -68,13 +68,11 @@ and simulates a network request. To connect it to a real backend:
 
 GA4 (measurement ID `G-E01X2RP8J3`) is wired site-wide via:
 
-- `lib/gtag.ts` — measurement ID + `pageview()` / `event()` helpers
+- `lib/gtag.ts` — measurement ID + conversion `event()` helper
 - `components/GoogleAnalytics.tsx` — loads the official `gtag.js` script
   with `next/script strategy="afterInteractive"` so it never blocks
-  First Contentful Paint / LCP
-- `components/AnalyticsPageView.tsx` — fires a `page_view` on initial
-  load and on every client-side route change (required for the App
-  Router's SPA navigation to be tracked correctly)
+  First Contentful Paint / LCP; GA4 enhanced measurement handles the
+  initial page view and App Router history changes
 
 Both are mounted once in `app/layout.tsx`, so every page — current and
 future — is tracked automatically with no per-page setup.

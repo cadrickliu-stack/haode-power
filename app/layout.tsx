@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import AnalyticsPageView from "@/components/AnalyticsPageView";
 import AnalyticsClickTracker from "@/components/AnalyticsClickTracker";
 import { site } from "@/lib/data";
 
@@ -138,7 +137,6 @@ export default function RootLayout({
         {analyticsEnabled && (
           <>
             <GoogleAnalytics />
-            <AnalyticsPageView />
             <AnalyticsClickTracker />
           </>
         )}

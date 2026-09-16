@@ -27,19 +27,6 @@ declare global {
   }
 }
 
-/** Sends a page_view event to GA4. Called on every client-side route change. */
-export function pageview(url: string) {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", "page_view", {
-    // Deliberately exclude the query string so form-prefill or future campaign
-    // parameters can never leak contact details into Analytics.
-    page_location: `${window.location.origin}${window.location.pathname}`,
-    page_path: url.split("?")[0],
-    page_title: document.title,
-    send_to: GA_MEASUREMENT_ID,
-  });
-}
-
 /** Sends a custom event to GA4 (e.g. form submissions, quote requests). */
 export function event(
   name: string,
