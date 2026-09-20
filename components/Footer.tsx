@@ -93,6 +93,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-wide flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/50 sm:flex-row">
           <p>© {year} {site.legalName}. All rights reserved.</p>
+          <Link href="/privacy-policy" className="focus-ring underline underline-offset-4 hover:text-orange-400">Privacy Policy</Link>
           <p>{site.domain} — Exporting Worldwide</p>
         </div>
       </div>

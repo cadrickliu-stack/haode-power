@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products/mobile-light-towers",
     "/about",
     "/contact",
+    "/privacy-policy",
     ...dieselGeneratorBrands.map(
       (brand) => `/products/diesel-generators/${brand.slug}`,
     ),
@@ -22,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((route) => ({
     url: `${site.url}${route}`,
-    lastModified,
+    lastModified: route === "/privacy-policy" ? new Date("2026-09-21T00:00:00.000Z") : lastModified,
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : route.startsWith("/products") ? 0.9 : 0.7,
   }));
