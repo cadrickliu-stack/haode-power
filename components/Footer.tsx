@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site, navLinks } from "@/lib/data";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -94,6 +95,7 @@ export default function Footer() {
         <div className="container-wide flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/50 sm:flex-row">
           <p>© {year} {site.legalName}. All rights reserved.</p>
           <Link href="/privacy-policy" className="focus-ring underline underline-offset-4 hover:text-orange-400">Privacy Policy</Link>
+          <CookieSettingsButton />
           <p>{site.domain} — Exporting Worldwide</p>
         </div>
       </div>

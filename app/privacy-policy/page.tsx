@@ -168,7 +168,9 @@ export default function PrivacyPolicyPage() {
             <p>{"Cookies are small data files stored on your device or browser."}</p>
             <p>{"Depending on your location and applicable law, you may have the right to accept, reject, or manage certain categories of cookies."}</p>
             <p>{"You can also control cookies through your browser settings. Disabling certain cookies may affect some website functionality."}</p>
-            <p>{"Where consent is legally required for analytics or similar technologies, appropriate consent mechanisms may be provided."}</p>
+            <p>We provide a cookie banner with Accept All and Reject Non-Essential choices. Google Analytics is first loaded only after you accept analytics cookies. Advertising storage, advertising user data, and advertising personalization remain disabled.</p>
+            <p>We save your choice in a necessary first-party cookie for 180 days. You can change your choice at any time using Cookie Settings in our website footer. Rejecting non-essential cookies does not prevent browsing, contacting us, or submitting an inquiry.</p>
+            <p>If you withdraw consent after Google Analytics has loaded, we update its consent settings and remove the related first-party analytics cookies. The already-loaded Google tag may send limited cookieless signals; these are different from storing analytics cookies. On subsequent visits with a saved rejection, we do not load Google Analytics.</p>
           </div>
         </section>
         <section id="section-6" aria-labelledby="section-6-title" className="scroll-mt-28 border-t border-navy-900/10 pt-8">
@@ -272,4 +274,3 @@ export default function PrivacyPolicyPage() {
     </>
   );
 }
-

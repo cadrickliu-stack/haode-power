@@ -74,8 +74,16 @@ GA4 (measurement ID `G-E01X2RP8J3`) is wired site-wide via:
   First Contentful Paint / LCP; GA4 enhanced measurement handles the
   initial page view and App Router history changes
 
-Both are mounted once in `app/layout.tsx`, so every page — current and
-future — is tracked automatically with no per-page setup.
+Consent Mode v2 defaults are set before interaction in `app/layout.tsx`.
+`CookieConsent` loads the existing Google tag once after analytics is accepted;
+GA4 enhanced measurement remains the sole page-view mechanism.
+The first-party `haode_cookie_consent` cookie remembers accepted/rejected for
+180 days. Footer Cookie Settings reopens the choice. Advertising consent stays
+denied. Revoking analytics updates consent and removes first-party GA cookies;
+an already-loaded tag may send cookieless signals until the next page load.
+Saved rejection prevents the tag from loading on subsequent visits.
+Conversion events are sent only while analytics is accepted. Inquiry and CRM
+operations run independently of consent.
 
 To point at a different GA property (e.g. staging), set
 `NEXT_PUBLIC_GA_ID` in your environment / Vercel project

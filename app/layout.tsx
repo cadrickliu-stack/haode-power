@@ -3,7 +3,9 @@ import { Barlow_Condensed, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Script from "next/script";
+import CookieConsent from "@/components/CookieConsent";
+import { CONSENT_BOOTSTRAP } from "@/lib/cookie-consent";
 import AnalyticsClickTracker from "@/components/AnalyticsClickTracker";
 import { site } from "@/lib/data";
 
@@ -126,6 +128,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${barlow.variable} ${inter.variable} ${mono.variable}`}>
       <body>
+        <Script id="cookie-consent-default" strategy="beforeInteractive">{CONSENT_BOOTSTRAP}</Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -134,15 +137,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        {analyticsEnabled && (
-          <>
-            <GoogleAnalytics />
-            <AnalyticsClickTracker />
-          </>
-        )}
+        {analyticsEnabled && <AnalyticsClickTracker />}
         <Header />
         <main>{children}</main>
         <Footer />
+        <CookieConsent analyticsEnabled={analyticsEnabled} />
       </body>
     </html>
   );

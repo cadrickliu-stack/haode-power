@@ -6,6 +6,8 @@
  * at setup time so analytics work out of the box.
  */
 
+import { readCookieChoice } from "@/lib/cookie-consent";
+
 export const GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GA_ID || "G-E01X2RP8J3";
 
@@ -32,7 +34,7 @@ export function event(
   name: string,
   params: Record<string, AnalyticsValue> = {}
 ) {
-  if (typeof window === "undefined" || !window.gtag) return;
+  if (typeof window === "undefined" || !window.gtag || readCookieChoice() !== "accepted") return;
   const safeParams = Object.fromEntries(
     Object.entries(params).filter(([key]) => SAFE_EVENT_PARAMETERS.has(key)),
   );

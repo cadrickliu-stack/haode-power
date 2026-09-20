@@ -1,8 +1,10 @@
+"use client";
+
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
 
 /**
- * Loads the official Google gtag.js library site-wide.
+ * Loads the existing Google tag once, after analytics consent is granted.
  *
  * - `strategy="afterInteractive"` loads GA after the page becomes
  *   interactive, so it never blocks First Contentful Paint / LCP — good
@@ -22,10 +24,8 @@ export default function GoogleAnalytics() {
       />
       <Script id="ga4-init" strategy="afterInteractive">
         {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}');
+          gtag('config', '${GA_MEASUREMENT_ID}', { allow_google_signals: false, allow_ad_personalization_signals: false });
         `}
       </Script>
     </>
