@@ -1,16 +1,19 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import { useEffect, useState } from "react";
 import { usePathname } from "@/i18n/navigation";
 import { localizedPath } from "@/i18n/text";
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   return <label className="flex shrink-0 items-center gap-2 text-xs text-navy-900">
     <span aria-hidden="true">◎</span>
     <span className="sr-only">English / Русский / Español</span>
-    <select aria-label="Language / Язык / Idioma" value={locale}
+    <select aria-label="Language / Язык / Idioma" value={locale} disabled={!ready}
       className="focus-ring max-w-[105px] border border-navy-900/20 bg-white px-2 py-2 text-sm"
       onChange={event => {
         // A language change is a new localized document; retain product query and fragment.
