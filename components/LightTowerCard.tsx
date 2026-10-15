@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { MobileLightTower } from "@/lib/mobile-light-towers";
 
 export default function LightTowerCard({
@@ -7,9 +7,10 @@ export default function LightTowerCard({
 }: {
   tower: MobileLightTower;
 }) {
+  const locale = useLocale();
   const detailHref = `/products/mobile-light-towers/${tower.slug}`;
 
-  return (
+  return localizeNode((
     <article className="group flex flex-col overflow-hidden border border-navy-900/10 bg-white transition-shadow duration-300 hover:shadow-xl hover:shadow-navy-900/10 md:flex-row">
       <Link
         href={detailHref}
@@ -76,5 +77,9 @@ export default function LightTowerCard({
         </div>
       </div>
     </article>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
@@ -8,7 +8,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { site, lightTowerHero } from "@/lib/data";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Mobile Light Towers | Diesel, LED & Solar Models",
   description:
     "Explore diesel, LED, heavy-duty mining, and solar mobile light towers for construction, rental, roadwork, and industrial site lighting.",
@@ -21,19 +21,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LightTowersPage() {
+export default async function LightTowersPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     itemListElement: mobileLightTowers.map((t, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: t.title,
-      url: `${site.url}/products/mobile-light-towers/${t.slug}`,
+      name: text(t.title, locale),
+      url: `${site.url}${localizedPath(`/products/mobile-light-towers/${t.slug}`, locale)}`,
     })),
   };
 
-  return (
+  return localizeNode((
     <>
       <script
         type="application/ld+json"
@@ -206,5 +208,17 @@ export default function LightTowersPage() {
         </div>
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode, text, localizedPath } from "@/i18n/text";
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  return localizeMetadata(baseMetadata, (await params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

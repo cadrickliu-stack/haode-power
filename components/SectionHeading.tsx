@@ -11,7 +11,8 @@ export default function SectionHeading({
   align?: "left" | "center";
   light?: boolean;
 }) {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <div className={`eyebrow ${align === "center" ? "justify-center before:hidden" : ""}`}>
         {eyebrow}
@@ -29,5 +30,9 @@ export default function SectionHeading({
         </p>
       )}
     </div>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

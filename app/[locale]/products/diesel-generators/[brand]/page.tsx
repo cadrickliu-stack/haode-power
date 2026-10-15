@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -14,14 +14,16 @@ import {
 import { site } from "@/lib/data";
 
 type BrandPageProps = {
-  params: Promise<{ brand: string }>;
+  params: Promise<{ brand: string; locale: string }>;
 };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return dieselGeneratorBrands.map((brand) => ({ brand: brand.slug }));
 }
 
-export async function generateMetadata({ params }: BrandPageProps): Promise<Metadata> {
+async function originalGenerateMetadata({ params }: BrandPageProps): Promise<Metadata> {
   const { brand: slug } = await params;
   const brand = getDieselGeneratorBrand(slug);
 
@@ -44,6 +46,8 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
 }
 
 export default async function DieselGeneratorBrandPage({ params }: BrandPageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const { brand: slug } = await params;
   const brand = getDieselGeneratorBrand(slug);
 
@@ -53,7 +57,7 @@ export default async function DieselGeneratorBrandPage({ params }: BrandPageProp
     (total, group) => total + group.models.length,
     0,
   );
-  return (
+  return localizeNode((
     <>
       <Breadcrumbs
         items={[
@@ -220,5 +224,17 @@ export default async function DieselGeneratorBrandPage({ params }: BrandPageProp
         </div>
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode } from "@/i18n/text";
+
+export async function generateMetadata(props: BrandPageProps & {params: Promise<{locale: string; brand: string}>}): Promise<Metadata> {
+ return localizeMetadata(await originalGenerateMetadata(props), (await props.params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

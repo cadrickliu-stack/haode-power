@@ -10,6 +10,16 @@ body {
   @apply bg-paper text-navy-900 font-body antialiased;
 }
 
+/* Cyrillic falls back to Inter/system sans; allow long localized headings and CTAs. */
+html[lang="ru"] .font-display { font-family: var(--font-inter), Arial, sans-serif; }
+html[lang="ru"] .font-700 { font-weight: 700; }
+html[lang="ru"] .font-800 { font-weight: 800; }
+html:not([lang="en"]) h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.12; overflow-wrap: anywhere; }
+html:not([lang="en"]) h2, html:not([lang="en"]) h3 { overflow-wrap: anywhere; }
+html:not([lang="en"]) .btn-primary, html:not([lang="en"]) .btn-secondary, html:not([lang="en"]) .btn-dark {
+  max-width: 100%; white-space: normal; text-align: center; letter-spacing: .025em;
+}
+
 ::selection {
   @apply bg-orange-500 text-white;
 }

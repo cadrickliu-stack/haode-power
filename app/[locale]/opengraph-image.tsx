@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+// Shared brand artwork; locale layouts retain the original public English image route.
 import { site } from "@/lib/data";
 
 export const runtime = "edge";
@@ -38,7 +39,7 @@ export default async function Image() {
           >
             H
           </div>
-          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: 2 }}>
+          <div style={{ display: "flex", gap: 8, fontSize: 28, fontWeight: 700, letterSpacing: 2 }}>
             HAODE <span style={{ color: "#FF8A3D" }}>POWER</span>
           </div>
         </div>

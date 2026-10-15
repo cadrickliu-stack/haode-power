@@ -5,7 +5,8 @@ function SpecificationList({
 }: {
   section: LightTowerSpecificationSection;
 }) {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <dl className="divide-y divide-navy-900/10">
       {section.items.map((item) => (
         <div
@@ -21,7 +22,7 @@ function SpecificationList({
         </div>
       ))}
     </dl>
-  );
+  ), locale);
 }
 
 export default function LightTowerSpecifications({
@@ -29,7 +30,8 @@ export default function LightTowerSpecifications({
 }: {
   sections: LightTowerSpecificationSection[];
 }) {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <>
       <div className="hidden grid-cols-1 gap-6 md:grid lg:grid-cols-2">
         {sections.map((section) => (
@@ -70,5 +72,9 @@ export default function LightTowerSpecifications({
         ))}
       </div>
     </>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

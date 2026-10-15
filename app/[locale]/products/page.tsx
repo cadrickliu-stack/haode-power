@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import DieselBrandCard from "@/components/DieselBrandCard";
@@ -10,7 +10,7 @@ import { dieselGeneratorCategory } from "@/lib/data";
 import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Products | Diesel Generators & Mobile Light Towers",
   description:
     "Browse diesel generator sets by engine brand and mobile light towers for mining, construction, rental, and industrial applications.",
@@ -22,8 +22,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProductsPage() {
-  return (
+export default async function ProductsPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return localizeNode((
     <>
       <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Products", href: "/products" }]} />
       <PageHero
@@ -97,5 +99,17 @@ export default function ProductsPage() {
         </div>
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode } from "@/i18n/text";
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  return localizeMetadata(baseMetadata, (await params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export default function Hero() {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <section className="relative overflow-hidden bg-navy-900">
       <div className="absolute inset-0">
         {/* Pre-optimized art direction: each viewport downloads only its matching WebP. */}
@@ -66,5 +67,9 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, Inter, IBM_Plex_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import { localizedPath } from "@/i18n/text";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
@@ -17,7 +22,7 @@ const barlow = Barlow_Condensed({
 });
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -80,11 +85,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{locale: string}>;
 }) {
+  const { locale } = await params;
+  if (!routing.locales.some((item) => item === locale)) notFound();
+  setRequestLocale(locale);
   const analyticsEnabled = process.env.VERCEL_ENV === "production";
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -116,17 +130,17 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: site.name,
-    url: site.url,
+    url: site.url + localizedPath("/", locale),
     publisher: {
       "@type": "Organization",
       name: site.legalName,
       url: site.url,
     },
-    inLanguage: "en",
+    inLanguage: locale,
   };
 
   return (
-    <html lang="en" className={`${barlow.variable} ${inter.variable} ${mono.variable}`}>
+    <html lang={locale} className={`${barlow.variable} ${inter.variable} ${mono.variable}`}>
       <body>
         <Script id="cookie-consent-default" strategy="beforeInteractive">{CONSENT_BOOTSTRAP}</Script>
         <script
@@ -137,11 +151,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <NextIntlClientProvider locale={locale} messages={{}}>
         {analyticsEnabled && <AnalyticsClickTracker />}
         <Header />
         <main>{children}</main>
         <Footer />
         <CookieConsent analyticsEnabled={analyticsEnabled} />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -1,7 +1,10 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+import { localizeNode } from "@/i18n/text";
 
 export default function NotFound() {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <section className="flex min-h-[70vh] flex-col items-center justify-center bg-navy-900 px-6 text-center text-white">
       <div className="font-mono text-sm uppercase tracking-[0.3em] text-orange-400">Error 404</div>
       <h1 className="mt-4 font-display text-6xl font-800 uppercase tracking-tight sm:text-7xl">
@@ -20,5 +23,5 @@ export default function NotFound() {
         </Link>
       </div>
     </section>
-  );
+  ), locale);
 }

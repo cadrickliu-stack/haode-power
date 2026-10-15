@@ -1,12 +1,13 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { site, navLinks } from "@/lib/data";
 import CookieSettingsButton from "@/components/CookieSettingsButton";
 
 export default function Footer() {
+  const locale = useLocale();
   const year = new Date().getFullYear();
 
-  return (
+  return localizeNode((
     <footer className="bg-ink text-white/70">
       <div className="container-wide grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
@@ -100,5 +101,9 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

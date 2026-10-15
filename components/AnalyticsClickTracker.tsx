@@ -7,6 +7,8 @@ const quoteLabels = new Set([
   "request quote",
   "request a quote",
   "request a quotation",
+  "запросить коммерческое предложение",
+  "solicitar cotización",
 ]);
 
 function getProductFromLink(link: HTMLAnchorElement) {

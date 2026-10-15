@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useRef, useState } from "react";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { OPEN_COOKIE_SETTINGS, readCookieChoice, saveCookieChoice, updateCookieConsent, type CookieChoice } from "@/lib/cookie-consent";
 
 export default function CookieConsent({ analyticsEnabled }: { analyticsEnabled: boolean }) {
+  const locale = useLocale();
   const [visible, setVisible] = useState(false);
   const [choice, setChoice] = useState<CookieChoice | null>(null);
   const [tagEnabled, setTagEnabled] = useState(false);
@@ -65,7 +66,7 @@ export default function CookieConsent({ analyticsEnabled }: { analyticsEnabled: 
     close();
   }
 
-  return (
+  return localizeNode((
     <>
       {analyticsEnabled && tagEnabled && <GoogleAnalytics />}
       {visible && (
@@ -86,6 +87,10 @@ export default function CookieConsent({ analyticsEnabled }: { analyticsEnabled: 
         </section>
       )}
     </>
-  );
+  ), locale);
 }
 
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

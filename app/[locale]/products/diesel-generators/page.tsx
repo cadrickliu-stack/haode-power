@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
@@ -11,7 +11,7 @@ import {
   plannedDieselGeneratorBrands,
 } from "@/lib/diesel-generator-brands";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Diesel Generator Sets by Engine Brand",
   description:
     "Explore Haode Power diesel generator sets by engine brand, including Cummins, Perkins, Volvo, MTU, Doosan, Weichai, Yuchai, and SDEC series with model specifications.",
@@ -24,20 +24,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DieselGeneratorsPage() {
+export default async function DieselGeneratorsPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const seriesSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Diesel Generator Series by Engine Brand",
+    name: text("Diesel Generator Series by Engine Brand", locale),
     itemListElement: dieselGeneratorBrands.map((brand, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: brand.title,
-      url: `${site.url}/products/diesel-generators/${brand.slug}`,
+      name: text(brand.title, locale),
+      url: `${site.url}${localizedPath(`/products/diesel-generators/${brand.slug}`, locale)}`,
     })),
   };
 
-  return (
+  return localizeNode((
     <>
       <script
         type="application/ld+json"
@@ -164,5 +166,17 @@ export default function DieselGeneratorsPage() {
         </div>
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode, text, localizedPath } from "@/i18n/text";
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  return localizeMetadata(baseMetadata, (await params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

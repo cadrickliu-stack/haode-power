@@ -4,7 +4,7 @@ const title = "Privacy Policy | HAODE Power";
 const description = "Read the HAODE Power Privacy Policy to learn how we collect, use, protect and manage personal information submitted through our website.";
 const url = "https://www.haodepower.com/privacy-policy";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: { absolute: title },
   description,
   alternates: { canonical: url },
@@ -72,8 +72,10 @@ const contents = [
   }
 ];
 
-export default function PrivacyPolicyPage() {
-  return (
+export default async function PrivacyPolicyPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return localizeNode((
     <>
       <section className="bg-navy-900 py-14 sm:py-20">
         <div className="container-wide">
@@ -272,5 +274,17 @@ export default function PrivacyPolicyPage() {
         </article>
       </div>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode } from "@/i18n/text";
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  return localizeMetadata(baseMetadata, (await params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

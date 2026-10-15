@@ -4,15 +4,17 @@ import InquiryForm from "@/components/InquiryForm";
 import Reveal from "@/components/Reveal";
 import { site } from "@/lib/data";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Contact Us",
   description:
     "Contact Haode Power for a diesel generator or mobile light tower quotation. Our export sales team responds within 24 hours.",
   alternates: { canonical: "/contact" },
 };
 
-export default function ContactPage() {
-  return (
+export default async function ContactPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return localizeNode((
     <>
       <PageHero
         eyebrow="Contact Us"
@@ -91,5 +93,17 @@ export default function ContactPage() {
         />
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode } from "@/i18n/text";
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  return localizeMetadata(baseMetadata, (await params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

@@ -13,7 +13,8 @@ export default function PageHero({
   image: string;
   imageAlt?: string;
 }) {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <section className="angle-cut-bottom relative overflow-hidden bg-navy-900 pb-16 pt-32 lg:pb-24 lg:pt-40">
       <div className="absolute inset-0">
         <Image src={image} alt={imageAlt} fill priority className="object-cover opacity-25" sizes="100vw" />
@@ -29,5 +30,9 @@ export default function PageHero({
         )}
       </div>
     </section>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

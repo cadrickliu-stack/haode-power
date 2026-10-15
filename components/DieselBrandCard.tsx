@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { DieselGeneratorBrand } from "@/lib/diesel-generator-brands";
 
 export default function DieselBrandCard({
@@ -7,7 +7,8 @@ export default function DieselBrandCard({
 }: {
   brand: DieselGeneratorBrand;
 }) {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <article className="group overflow-hidden border border-navy-900/10 bg-white transition-shadow duration-300 hover:shadow-xl hover:shadow-navy-900/10">
       <Link
         href={`/products/diesel-generators/${brand.slug}`}
@@ -59,5 +60,9 @@ export default function DieselBrandCard({
         </div>
       </Link>
     </article>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode } from "@/i18n/text";

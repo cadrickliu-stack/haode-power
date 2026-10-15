@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
@@ -11,15 +11,17 @@ import { advantages, dieselGeneratorCategory, industries, lightTowerCategory, si
 import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Diesel Generator & Mobile Light Tower Manufacturer",
   description:
     "Haode Power supplies diesel generator sets and mobile light towers for mining, construction, rental, and industrial projects, with model-specific product information and quotation support.",
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
-  return (
+export default async function HomePage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return localizeNode((
     <>
       <Hero />
 
@@ -322,5 +324,17 @@ export default function HomePage() {
         </div>
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode } from "@/i18n/text";
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  return localizeMetadata(baseMetadata, (await params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

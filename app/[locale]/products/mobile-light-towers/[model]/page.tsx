@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import LightTowerSpecifications from "@/components/LightTowerSpecifications";
 import Reveal from "@/components/Reveal";
@@ -13,14 +13,16 @@ import {
 } from "@/lib/mobile-light-towers";
 
 type LightTowerPageProps = {
-  params: Promise<{ model: string }>;
+  params: Promise<{ model: string; locale: string }>;
 };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return mobileLightTowers.map((tower) => ({ model: tower.slug }));
 }
 
-export async function generateMetadata({
+async function originalGenerateMetadata({
   params,
 }: LightTowerPageProps): Promise<Metadata> {
   const { model: slug } = await params;
@@ -54,6 +56,8 @@ export async function generateMetadata({
 export default async function MobileLightTowerPage({
   params,
 }: LightTowerPageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const { model: slug } = await params;
   const tower = getMobileLightTower(slug);
 
@@ -61,7 +65,7 @@ export default async function MobileLightTowerPage({
 
   const quoteHref = `/contact?product=${encodeURIComponent(tower.name)}`;
 
-  return (
+  return localizeNode((
     <>
       <Breadcrumbs
         items={[
@@ -209,5 +213,17 @@ export default async function MobileLightTowerPage({
         </div>
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode } from "@/i18n/text";
+
+export async function generateMetadata(props: LightTowerPageProps & {params: Promise<{locale: string; model: string}>}): Promise<Metadata> {
+ return localizeMetadata(await originalGenerateMetadata(props), (await props.params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

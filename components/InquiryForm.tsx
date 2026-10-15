@@ -27,6 +27,7 @@ const productOptions = [
 type Status = "idle" | "submitting" | "success" | "error";
 
 function InquiryFormInner({ compact = false }: { compact?: boolean }) {
+  const locale = useLocale();
   const [status, setStatus] = useState<Status>("idle");
   const [inquiryId, setInquiryId] = useState("");
   const searchParams = useSearchParams();
@@ -83,7 +84,7 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
     "w-full border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 placeholder:text-steel-500 transition-colors focus:border-orange-500 focus-ring";
 
   if (status === "success") {
-    return (
+    return localizeNode((
       <div className="flex flex-col items-center justify-center gap-3 border border-orange-500/30 bg-orange-500/5 px-6 py-16 text-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 text-2xl text-white">✓</div>
         <h3 className="font-display text-2xl font-700 uppercase text-navy-900">Inquiry Received</h3>
@@ -104,11 +105,15 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
           Submit another inquiry
         </button>
       </div>
-    );
+    ), locale);
   }
 
-  return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+  return localizeNode((
+    <form onSubmit={handleSubmit} onInvalid={(event) => {
+      const field = event.target as HTMLInputElement;
+      const message = field.validity.valueMissing ? "Please complete this required field." : field.type === "email" ? "Please enter a valid email address." : "Please enter a whole number between 1 and 1000000.";
+      field.setCustomValidity(text(message, locale));
+    }} onInput={(event) => (event.target as HTMLInputElement).setCustomValidity?.("")} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <div className="sm:col-span-1">
         <label htmlFor="name" className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-steel-600">
           Full Name *
@@ -197,13 +202,18 @@ function InquiryFormInner({ compact = false }: { compact?: boolean }) {
         )}
       </div>
     </form>
-  );
+  ), locale);
 }
 
 export default function InquiryForm({ compact = false }: { compact?: boolean }) {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <Suspense fallback={<div className="h-64 animate-pulse bg-navy-900/5" />}>
       <InquiryFormInner compact={compact} />
     </Suspense>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode, text } from "@/i18n/text";

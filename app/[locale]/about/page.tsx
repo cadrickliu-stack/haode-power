@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "About Us",
   description:
     "Learn about Haode Power's manufacturing capability, factory, quality control process, and global export markets for diesel generators and light towers.",
@@ -28,8 +28,10 @@ const marketRegions = [
   { region: "Oceania", detail: "Papua New Guinea, Fiji" },
 ];
 
-export default function AboutPage() {
-  return (
+export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  return localizeNode((
     <>
       <PageHero
         eyebrow="About Haode Power"
@@ -249,5 +251,17 @@ export default function AboutPage() {
         </div>
       </section>
     </>
-  );
+  ), locale);
 }
+
+
+
+import { localizeNode } from "@/i18n/text";
+
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  return localizeMetadata(baseMetadata, (await params).locale);
+}
+
+import { localizeMetadata } from "@/i18n/metadata";
+
+import { setRequestLocale } from "next-intl/server";

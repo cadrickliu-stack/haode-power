@@ -43,7 +43,18 @@ export function clearAnalyticsCookies() {
 
 export function updateCookieConsent(choice: CookieChoice | null) {
   window.gtag?.("consent", "update", consentState(choice));
-  if (choice !== "accepted") clearAnalyticsCookies();
+  if (choice !== "accepted") clearAnalyticsCookiesAfterConsent();
+}
+
+// A late-loading tag can process an earlier granted/config command after the
+// immediate deletion. Recheck after its load/queued work without changing GA
+// initialization or emitting any events. Never clear a newly accepted choice.
+export function clearAnalyticsCookiesAfterConsent() {
+  const clearIfDenied = () => {
+    if (readCookieChoice() !== "accepted") clearAnalyticsCookies();
+  };
+  clearIfDenied();
+  for (const delay of [0, 250, 1000]) window.setTimeout(clearIfDenied, delay);
 }
 
 export function saveCookieChoice(choice: CookieChoice) {

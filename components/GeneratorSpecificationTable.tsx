@@ -3,8 +3,8 @@ import type {
   GeneratorSpecificationColumn,
 } from "@/lib/diesel-generator-brands";
 
-function columnHeading(column: GeneratorSpecificationColumn) {
-  return column.unit ? `${column.label} (${column.unit})` : column.label;
+function columnHeading(column: GeneratorSpecificationColumn, locale: string) {
+  return column.unit ? `${text(column.label, locale)} (${column.unit})` : text(column.label, locale);
 }
 
 export default function GeneratorSpecificationTable({
@@ -12,7 +12,8 @@ export default function GeneratorSpecificationTable({
 }: {
   groups: GeneratorSeriesGroup[];
 }) {
-  return (
+  const locale = useLocale();
+  return localizeNode((
     <div className="space-y-12">
       {groups.map((group) => {
         const headingId = `${group.name.replace(/\s+/g, "-").toLowerCase()}-heading`;
@@ -44,7 +45,7 @@ export default function GeneratorSpecificationTable({
                         scope="col"
                         className="whitespace-nowrap px-4 py-4 font-display font-700 uppercase tracking-wide"
                       >
-                        {columnHeading(column)}
+                        {columnHeading(column, locale)}
                       </th>
                     ))}
                   </tr>
@@ -106,7 +107,7 @@ export default function GeneratorSpecificationTable({
                     {group.columns.map((column) => (
                       <div key={column.key} className="min-w-0">
                         <dt className="text-xs font-bold uppercase tracking-wide text-steel-500">
-                          {columnHeading(column)}
+                          {columnHeading(column, locale)}
                         </dt>
                         <dd className="mt-1 break-words font-mono text-navy-900">
                           {model[column.key]}
@@ -121,5 +122,9 @@ export default function GeneratorSpecificationTable({
         );
       })}
     </div>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode, text } from "@/i18n/text";

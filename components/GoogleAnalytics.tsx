@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
+import { clearAnalyticsCookiesAfterConsent } from "@/lib/cookie-consent";
 
 /**
  * Loads the existing Google tag once, after analytics consent is granted.
@@ -21,6 +22,7 @@ export default function GoogleAnalytics() {
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
         strategy="afterInteractive"
+        onLoad={clearAnalyticsCookiesAfterConsent}
       />
       <Script id="ga4-init" strategy="afterInteractive">
         {`

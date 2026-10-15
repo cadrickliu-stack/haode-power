@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { site } from "@/lib/data";
 
 export type BreadcrumbItem = {
@@ -7,18 +7,19 @@ export type BreadcrumbItem = {
 };
 
 export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+  const locale = useLocale();
   const schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: item.name,
-      item: `${site.url}${item.href === "/" ? "" : item.href}`,
+      name: text(item.name, locale),
+      item: `${site.url}${localizedPath(item.href, locale)}`,
     })),
   };
 
-  return (
+  return localizeNode((
     <>
       <script
         type="application/ld+json"
@@ -46,5 +47,9 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
         </ol>
       </nav>
     </>
-  );
+  ), locale);
 }
+
+import { useLocale } from "next-intl";
+
+import { localizeNode, text, localizedPath } from "@/i18n/text";
