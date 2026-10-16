@@ -10,6 +10,7 @@ import InquiryForm from "@/components/InquiryForm";
 import { advantages, dieselGeneratorCategory, industries, lightTowerCategory, site } from "@/lib/data";
 import { dieselGeneratorBrands } from "@/lib/diesel-generator-brands";
 import { mobileLightTowers } from "@/lib/mobile-light-towers";
+import styles from "./home.module.css";
 
 const baseMetadata: Metadata = {
   title: "Diesel Generator & Mobile Light Tower Manufacturer",
@@ -26,12 +27,12 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       <Hero />
 
       {/* Company Advantages */}
-      <section className="border-b border-navy-900/10 bg-white py-16">
+      <section className={`${styles.section} border-b border-navy-900/10 bg-white py-16`}>
         <div className="container-wide">
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
             {advantages.map((a, i) => (
               <Reveal key={a.title} delay={i * 80} className="text-center lg:text-left">
-                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center bg-navy-900 font-display text-lg font-700 text-orange-400 lg:mx-0 [clip-path:polygon(15%_0,100%_0,85%_100%,0_100%)]">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center bg-[#E8F3FC] font-display text-lg font-700 text-orange-600 lg:mx-0 [clip-path:polygon(15%_0,100%_0,85%_100%,0_100%)]">
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <h3 className="font-display text-lg font-700 uppercase leading-tight text-navy-900">
@@ -45,7 +46,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Product Categories */}
-      <section className="bg-paper py-24">
+      <section className={`${styles.section} bg-[#F3F8FD] py-24`}>
         <div className="container-wide">
           <Reveal>
             <SectionHeading
@@ -57,24 +58,24 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
 
           <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
             <Reveal delay={80}>
-              <Link href="/products/diesel-generators" className="group relative block h-[420px] overflow-hidden bg-navy-900">
+              <Link href="/products/diesel-generators" className="group relative block h-[420px] overflow-hidden border border-navy-900/10 bg-white">
                 <Image
                   src={dieselGeneratorCategory.image}
                   alt={dieselGeneratorCategory.alt}
                   fill
-                  className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
+                <div className={`absolute inset-0 ${styles.imageScrim}`} />
                 <div className="absolute inset-x-0 bottom-0 p-8">
                   <div className="eyebrow before:bg-orange-500">Multi-Brand Series</div>
-                  <h3 className="mt-2 font-display text-3xl font-700 uppercase text-white">
+                  <h3 className="mt-2 font-display text-3xl font-700 uppercase text-[#173A60]">
                     Diesel Generators
                   </h3>
-                  <p className="mt-2 max-w-md text-sm text-white/70">
+                  <p className="mt-2 max-w-md text-sm text-[#3E566E]">
                     Diesel generator sets by established engine brand for mining, construction, and industrial power applications.
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-orange-400">
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-orange-600">
                     Explore Range <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
@@ -82,24 +83,24 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
             </Reveal>
 
             <Reveal delay={160}>
-              <Link href="/products/mobile-light-towers" className="group relative block h-[420px] overflow-hidden bg-navy-900">
+              <Link href="/products/mobile-light-towers" className="group relative block h-[420px] overflow-hidden border border-navy-900/10 bg-white">
                 <Image
                   src={lightTowerCategory.image}
                   alt={lightTowerCategory.alt}
                   fill
-                  className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" />
+                <div className={`absolute inset-0 ${styles.imageScrim}`} />
                 <div className="absolute inset-x-0 bottom-0 p-8">
                   <div className="eyebrow before:bg-orange-500">Five Mobile Lighting Models</div>
-                  <h3 className="mt-2 font-display text-3xl font-700 uppercase text-white">
+                  <h3 className="mt-2 font-display text-3xl font-700 uppercase text-[#173A60]">
                     Mobile Light Towers
                   </h3>
-                  <p className="mt-2 max-w-md text-sm text-white/70">
+                  <p className="mt-2 max-w-md text-sm text-[#3E566E]">
                     Towable lighting systems for night shifts, emergency response, and remote sites.
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-orange-400">
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-orange-600">
                     Explore Range <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
@@ -110,7 +111,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Featured diesel generator brand series */}
-      <section className="bg-white py-24">
+      <section className={`${styles.section} bg-white py-24`}>
         <div className="container-wide">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -135,31 +136,30 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Industries Served */}
-      <section className="bg-navy-900 py-24">
+      <section className={`${styles.section} bg-[#E8F3FC] py-24`}>
         <div className="container-wide">
           <Reveal>
             <SectionHeading
               eyebrow="Industries Served"
               title="Power for Every Site Condition"
               description="From dust and vibration on mine sites to grid-critical uptime for infrastructure projects."
-              light
             />
           </Reveal>
           <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {industries.map((ind, i) => (
               <Reveal key={ind.name} delay={i * 90}>
-                <div className="group relative h-72 overflow-hidden">
+                <div className="group relative h-72 overflow-hidden border border-navy-900/10 bg-white">
                   <Image
                     src={ind.image}
                     alt={`${ind.name} industry power solutions`}
                     fill
-                    className="object-cover opacity-70 transition-all duration-500 group-hover:scale-110 group-hover:opacity-90"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 50vw, 20vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/50 to-transparent" />
+                  <div className={`absolute inset-0 ${styles.industryScrim}`} />
                   <div className="absolute inset-x-0 bottom-0 p-5">
-                    <h3 className="font-display text-xl font-700 uppercase text-white">{ind.name}</h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-white/70">{ind.description}</p>
+                    <h3 className="font-display text-xl font-700 uppercase text-[#173A60]">{ind.name}</h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-[#3E566E]">{ind.description}</p>
                   </div>
                   <div className="absolute left-0 top-0 h-1 w-10 bg-orange-500 transition-all duration-300 group-hover:w-full" />
                 </div>
@@ -170,7 +170,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Featured Light Towers */}
-      <section className="bg-paper py-24">
+      <section className={`${styles.section} bg-[#F3F8FD] py-24`}>
         <div className="container-wide">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -195,8 +195,8 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Why Choose Haode Power */}
-      <section className="relative overflow-hidden bg-navy-900 py-24 text-white">
-        <div className="absolute inset-0 opacity-20">
+      <section className={`${styles.section} relative overflow-hidden bg-[#E8F3FC] py-24`}>
+        <div className="absolute inset-0 opacity-10">
           <Image
             src="/images/real/home/diesel-generator-production-line.webp"
             alt="Diesel generator production line at a manufacturing facility"
@@ -210,9 +210,9 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
             <div className="eyebrow before:bg-orange-500">Why Choose Haode Power</div>
             <h2 className="mt-3 font-display text-4xl font-700 uppercase leading-[1.05] tracking-tight sm:text-5xl">
               Engineering Trusted on
-              <span className="text-orange-400"> Six Continents</span>
+              <span className="text-orange-600"> Six Continents</span>
             </h2>
-            <p className="mt-5 max-w-lg text-white/70">
+            <p className="mt-5 max-w-lg text-[#3E566E]">
               Haode Power coordinates engine selection, generator assembly,
               quality control, and delivery with experienced manufacturing
               partners — giving buyers one accountable contact from technical
@@ -226,8 +226,8 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
                 { value: "24/7", label: "After-Sales Support" },
               ].map((s) => (
                 <div key={s.label} className="border-l-2 border-orange-500 pl-4">
-                  <div className="font-mono text-2xl font-600 text-orange-400">{s.value}</div>
-                  <div className="text-xs font-semibold uppercase tracking-wide text-white/60">{s.label}</div>
+                  <div className="font-mono text-2xl font-600 text-orange-600">{s.value}</div>
+                  <div className="text-xs font-semibold uppercase tracking-wide text-[#3E566E]">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -267,7 +267,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Customer Inquiry Section */}
-      <section className="bg-white py-24">
+      <section className={`${styles.section} bg-white py-24`}>
         <div className="container-wide grid grid-cols-1 gap-16 lg:grid-cols-5">
           <Reveal className="lg:col-span-2">
             <div className="eyebrow">Get In Touch</div>
@@ -295,7 +295,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
             </ul>
           </Reveal>
           <Reveal delay={100} className="lg:col-span-3">
-            <div className="border border-navy-900/10 bg-paper p-8">
+            <div className="border border-navy-900/10 bg-[#F3F8FD] p-8">
               <InquiryForm />
             </div>
           </Reveal>
@@ -303,23 +303,23 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
       </section>
 
       {/* Contact Information Banner */}
-      <section className="bg-navy-950 py-16 text-white">
+      <section className={`${styles.section} border-t border-navy-900/10 bg-[#E8F3FC] py-16`}>
         <div className="container-wide grid grid-cols-1 gap-8 sm:grid-cols-3">
           <div>
-            <div className="text-xs font-bold uppercase tracking-wide text-orange-400">Call Us</div>
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="focus-ring mt-2 block font-display text-2xl font-700 text-white hover:text-orange-400">
+            <div className="text-xs font-bold uppercase tracking-wide text-orange-600">Call Us</div>
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="focus-ring mt-2 block font-display text-2xl font-700 text-[#173A60] hover:text-orange-600">
               {site.phone}
             </a>
           </div>
           <div>
-            <div className="text-xs font-bold uppercase tracking-wide text-orange-400">Email Us</div>
-            <a href={`mailto:${site.email}`} className="focus-ring mt-2 block font-display text-2xl font-700 text-white hover:text-orange-400">
+            <div className="text-xs font-bold uppercase tracking-wide text-orange-600">Email Us</div>
+            <a href={`mailto:${site.email}`} className="focus-ring mt-2 block font-display text-2xl font-700 text-[#173A60] hover:text-orange-600">
               {site.email}
             </a>
           </div>
           <div>
-            <div className="text-xs font-bold uppercase tracking-wide text-orange-400">Factory Address</div>
-            <p className="mt-2 font-display text-xl font-700 text-white">{site.address}</p>
+            <div className="text-xs font-bold uppercase tracking-wide text-orange-600">Factory Address</div>
+            <p className="mt-2 font-display text-xl font-700 text-[#3E566E]">{site.address}</p>
           </div>
         </div>
       </section>

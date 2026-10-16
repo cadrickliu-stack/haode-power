@@ -1,0 +1,40 @@
+/* Applied only to homepage sections below Hero. Shared components keep their
+   existing appearance on product, contact and other pages. */
+.section {
+  color: #3e566e;
+}
+
+.section h2,
+.section h3,
+.section :global(.text-navy-900) {
+  color: #173a60;
+}
+
+.section :global(.text-steel-500),
+.section :global(.text-steel-600) {
+  color: #3e566e;
+}
+
+.section :global(.border-navy-900\/10) {
+  border-color: rgb(23 58 96 / 15%);
+}
+
+.section :global(.btn-dark) {
+  background-color: #173a60;
+}
+
+.section :global(.btn-dark:hover) {
+  background-color: #102a4c;
+}
+
+.section :global(.focus-ring) {
+  --tw-ring-offset-color: #fff;
+}
+
+.imageScrim {
+  background: linear-gradient(0deg, #f3f8fd 0%, rgb(243 248 253 / 97%) 25%, rgb(232 243 252 / 78%) 48%, rgb(232 243 252 / 8%) 100%);
+}
+
+.industryScrim {
+  background: linear-gradient(0deg, #fff 0%, rgb(255 255 255 / 96%) 28%, rgb(243 248 253 / 65%) 58%, transparent 100%);
+}
